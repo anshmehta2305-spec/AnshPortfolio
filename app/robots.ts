@@ -10,3 +10,4 @@ export default function robots(): MetadataRoute.Robots {
     sitemap: `${PERSONAL_INFO.portfolioDomain}/sitemap.xml`,
   };
 }
+

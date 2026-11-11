@@ -131,3 +131,4 @@ export async function fetchGithubActivity(username: string): Promise<GithubProfi
     return FALLBACK_PROFILE;
   }
 }
+

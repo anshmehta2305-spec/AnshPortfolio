@@ -14,3 +14,4 @@ export function sanitizeInput(input: string): string {
     .replace(/'/g, "&#x27;")
     .replace(/\//g, "&#x2F;");
 }
+

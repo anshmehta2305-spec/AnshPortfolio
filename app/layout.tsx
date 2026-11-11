@@ -100,7 +100,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className="font-sans antialiased bg-grid-blueprint selection:bg-accent-cyan/20"
+        className="font-sans antialiased cad-grid selection:bg-brand-lime/30 selection:text-black"
       >
         <div className="noise-overlay" aria-hidden="true" />
         {children}

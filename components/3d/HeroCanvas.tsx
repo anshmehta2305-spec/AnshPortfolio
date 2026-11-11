@@ -8,7 +8,7 @@ export default function HeroCanvas() {
   const [isReducedMotion, setIsReducedMotion] = useState(false);
 
   useEffect(() => {
-    // Check prefers-reduced-motion
+    // Respect prefers-reduced-motion
     const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (motionQuery.matches) {
       setIsReducedMotion(true);
@@ -21,12 +21,12 @@ export default function HeroCanvas() {
     // Scene, Camera, Renderer
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
-      60,
+      55,
       container.clientWidth / container.clientHeight,
       0.1,
       1000
     );
-    camera.position.z = 24;
+    camera.position.set(0, 0, 22);
 
     const renderer = new THREE.WebGLRenderer({
       alpha: true,
@@ -38,64 +38,48 @@ export default function HeroCanvas() {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     container.appendChild(renderer.domElement);
 
-    // Group for mouse reaction
-    const worldGroup = new THREE.Group();
-    scene.add(worldGroup);
+    // Root Group
+    const cadGroup = new THREE.Group();
+    scene.add(cadGroup);
 
-    // 1. Central Geometric Data Core (Wireframe Icosahedron)
-    const coreGeometry = new THREE.IcosahedronGeometry(7, 1);
-    const coreMaterial = new THREE.MeshBasicMaterial({
-      color: 0x00f0ff,
-      wireframe: true,
+    // 1. Industrial Outer Blueprint Polyhedron (Dodecahedron with wireframe)
+    const polyGeo = new THREE.DodecahedronGeometry(6.5, 0);
+    const wireframeGeo = new THREE.WireframeGeometry(polyGeo);
+    const wireframeMat = new THREE.LineBasicMaterial({
+      color: 0xd4ff00, // Acid Lime
       transparent: true,
-      opacity: 0.28,
+      opacity: 0.35,
+      linewidth: 1,
     });
-    const coreMesh = new THREE.Mesh(coreGeometry, coreMaterial);
-    worldGroup.add(coreMesh);
+    const cadWireframe = new THREE.LineSegments(wireframeGeo, wireframeMat);
+    cadGroup.add(cadWireframe);
 
-    // Secondary inner wireframe octahedron
-    const innerGeometry = new THREE.OctahedronGeometry(4, 0);
-    const innerMaterial = new THREE.MeshBasicMaterial({
-      color: 0x6366f1,
-      wireframe: true,
+    // 2. Vertex Marker Points (CAD Points)
+    const posAttribute = polyGeo.attributes.position;
+    const vertexMat = new THREE.PointsMaterial({
+      color: 0xff5500, // Signal Orange
+      size: 0.28,
+    });
+    const vertexPoints = new THREE.Points(polyGeo, vertexMat);
+    cadGroup.add(vertexPoints);
+
+    // 3. Inner Technical Octahedron Core
+    const innerGeo = new THREE.OctahedronGeometry(3.6, 0);
+    const innerWireframe = new THREE.WireframeGeometry(innerGeo);
+    const innerMat = new THREE.LineBasicMaterial({
+      color: 0xffffff,
       transparent: true,
-      opacity: 0.45,
+      opacity: 0.2,
     });
-    const innerMesh = new THREE.Mesh(innerGeometry, innerMaterial);
-    worldGroup.add(innerMesh);
+    const innerCore = new THREE.LineSegments(innerWireframe, innerMat);
+    cadGroup.add(innerCore);
 
-    // 2. Particle Constellation Field
-    const particleCount = 220;
-    const particleGeometry = new THREE.BufferGeometry();
-    const positions = new Float32Array(particleCount * 3);
-    const velocities: { x: number; y: number; z: number }[] = [];
-
-    for (let i = 0; i < particleCount * 3; i += 3) {
-      positions[i] = (Math.random() - 0.5) * 45;
-      positions[i + 1] = (Math.random() - 0.5) * 35;
-      positions[i + 2] = (Math.random() - 0.5) * 35;
-
-      velocities.push({
-        x: (Math.random() - 0.5) * 0.015,
-        y: (Math.random() - 0.5) * 0.015,
-        z: (Math.random() - 0.5) * 0.015,
-      });
-    }
-
-    particleGeometry.setAttribute(
-      "position",
-      new THREE.BufferAttribute(positions, 3)
-    );
-
-    const particleMaterial = new THREE.PointsMaterial({
-      color: 0x00f0ff,
-      size: 0.22,
-      transparent: true,
-      opacity: 0.65,
-    });
-
-    const particles = new THREE.Points(particleGeometry, particleMaterial);
-    worldGroup.add(particles);
+    // 4. Subtle CAD Horizon Grid Plane
+    const gridHelper = new THREE.GridHelper(30, 20, 0xd4ff00, 0x222630);
+    gridHelper.position.y = -7.5;
+    gridHelper.material.transparent = true;
+    gridHelper.material.opacity = 0.25;
+    scene.add(gridHelper);
 
     // Mouse tracking with smooth damping
     let targetMouseX = 0;
@@ -105,8 +89,8 @@ export default function HeroCanvas() {
 
     const handleMouseMove = (e: MouseEvent) => {
       const { innerWidth, innerHeight } = window;
-      targetMouseX = (e.clientX / innerWidth - 0.5) * 2;
-      targetMouseY = (e.clientY / innerHeight - 0.5) * 2;
+      targetMouseX = (e.clientX / innerWidth - 0.5) * 1.5;
+      targetMouseY = (e.clientY / innerHeight - 0.5) * 1.5;
     };
 
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
@@ -117,44 +101,24 @@ export default function HeroCanvas() {
 
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
-      const elapsedTime = clock.getElapsedTime();
+      const elapsed = clock.getElapsedTime();
 
-      // Smooth mouse follow
+      // Smooth lag interpolation
       currentMouseX += (targetMouseX - currentMouseX) * 0.05;
       currentMouseY += (targetMouseY - currentMouseY) * 0.05;
 
-      worldGroup.rotation.y = elapsedTime * 0.08 + currentMouseX * 0.4;
-      worldGroup.rotation.x = currentMouseY * 0.3;
+      cadGroup.rotation.y = elapsed * 0.12 + currentMouseX * 0.5;
+      cadGroup.rotation.x = currentMouseY * 0.4;
+      cadGroup.rotation.z = elapsed * 0.04;
 
-      coreMesh.rotation.x = elapsedTime * 0.05;
-      coreMesh.rotation.z = elapsedTime * 0.03;
-
-      innerMesh.rotation.y = -elapsedTime * 0.1;
-      innerMesh.rotation.x = elapsedTime * 0.08;
-
-      // Particle floating drift
-      const posAttr = particleGeometry.attributes.position;
-      const array = posAttr.array as Float32Array;
-
-      for (let i = 0; i < particleCount; i++) {
-        const i3 = i * 3;
-        array[i3] += velocities[i].x;
-        array[i3 + 1] += velocities[i].y;
-        array[i3 + 2] += velocities[i].z;
-
-        // Boundaries wrap
-        if (Math.abs(array[i3]) > 25) array[i3] = -array[i3];
-        if (Math.abs(array[i3 + 1]) > 20) array[i3 + 1] = -array[i3 + 1];
-        if (Math.abs(array[i3 + 2]) > 20) array[i3 + 2] = -array[i3 + 2];
-      }
-      posAttr.needsUpdate = true;
+      innerCore.rotation.y = -elapsed * 0.18;
+      innerCore.rotation.x = elapsed * 0.1;
 
       renderer.render(scene, camera);
     };
 
     animate();
 
-    // Resize handler
     const handleResize = () => {
       if (!container) return;
       camera.aspect = container.clientWidth / container.clientHeight;
@@ -171,29 +135,26 @@ export default function HeroCanvas() {
       if (container && renderer.domElement) {
         container.removeChild(renderer.domElement);
       }
-      coreGeometry.dispose();
-      coreMaterial.dispose();
-      innerGeometry.dispose();
-      innerMaterial.dispose();
-      particleGeometry.dispose();
-      particleMaterial.dispose();
+      polyGeo.dispose();
+      wireframeGeo.dispose();
+      wireframeMat.dispose();
+      innerGeo.dispose();
+      innerWireframe.dispose();
+      innerMat.dispose();
+      vertexMat.dispose();
+      gridHelper.dispose();
       renderer.dispose();
     };
   }, []);
 
   if (isReducedMotion) {
-    return (
-      <div
-        className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-accent-cyan/10 via-transparent to-transparent pointer-events-none"
-        aria-hidden="true"
-      />
-    );
+    return null;
   }
 
   return (
     <div
       ref={containerRef}
-      className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden opacity-85 z-0"
+      className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden opacity-75 z-0"
       aria-hidden="true"
     />
   );

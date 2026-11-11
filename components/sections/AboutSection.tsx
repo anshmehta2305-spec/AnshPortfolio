@@ -1,111 +1,106 @@
 "use client";
 
 import React from "react";
-import { PERSONAL_INFO, KEY_METRICS } from "@/data/content";
-import { User, Cpu, ShieldCheck, Zap, TerminalSquare } from "lucide-react";
+import { PERSONAL_INFO } from "@/data/content";
+import { Terminal, Shield, Zap, Database, Server, GitBranch } from "lucide-react";
 
 export default function AboutSection() {
   return (
-    <section id="about" className="py-24 relative border-t border-border/40">
+    <section id="about" className="py-24 relative border-b border-border bg-[#0a0c10]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex items-center gap-2 mb-4">
-          <span className="p-1.5 rounded-md bg-accent-cyan/10 border border-accent-cyan/30 text-accent-cyan">
-            <User className="w-4 h-4" />
-          </span>
-          <span className="text-xs font-mono-hud text-accent-cyan uppercase tracking-wider">
-            01 // Engineering Profile
+        <div className="flex items-center justify-between mb-10 pb-4 border-b border-border">
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 bg-brand-lime inline-block" />
+            <span className="text-xs font-mono-hud text-brand-lime uppercase font-bold tracking-widest">
+              SECTION [01] // SYSTEM DOSSIER &amp; SPECIFICATIONS
+            </span>
+          </div>
+          <span className="text-xs font-mono-hud text-text-muted hidden sm:inline-block">
+            DOC_REF: AM-BTECH-CSE-2026
           </span>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Left Column: Bio & Core Tenets */}
-          <div className="lg:col-span-7 space-y-6">
-            <h2 className="text-3xl sm:text-4xl font-display font-bold text-foreground tracking-tight">
-              Crafting scalable full-stack software with deep architectural rigor.
-            </h2>
+        {/* Industrial Bento Engineering Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+          {/* Main Dossier Summary (7 cols) */}
+          <div className="lg:col-span-7 p-6 sm:p-8 rounded-sm bg-[#11141a] border border-border space-y-6 flex flex-col justify-between">
+            <div>
+              <div className="text-[11px] font-mono-hud text-brand-lime font-bold uppercase mb-2">
+                // EXECUTIVE SUMMARY
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-display font-extrabold uppercase text-foreground tracking-tight leading-snug">
+                Engineering real, production-style software with full-stack discipline.
+              </h2>
+              <p className="mt-4 text-sm text-text-muted leading-relaxed font-sans">
+                {PERSONAL_INFO.bio}
+              </p>
+            </div>
 
-            <p className="text-base text-text-muted leading-relaxed">
-              {PERSONAL_INFO.bio}
-            </p>
-
-            {/* Architecture Highlights Pill Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-              <div className="p-4 rounded-xl glass-panel border border-border">
-                <div className="flex items-center gap-2.5 text-accent-cyan font-semibold text-sm mb-1.5">
-                  <Cpu className="w-4 h-4" />
-                  <span>Production Architectures</span>
+            {/* Technical Parameters Matrix */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-6 border-t border-border/60">
+              <div className="p-3 bg-[#161a22] border border-border/80">
+                <div className="text-[10px] font-mono-hud text-brand-lime font-bold">
+                  PRIMARY STACK
                 </div>
-                <p className="text-xs text-text-muted leading-relaxed">
-                  Next.js 14 App Router, React 18, and FastAPI backends engineered for sub-100ms response latencies and high availability.
-                </p>
+                <div className="text-xs font-bold text-foreground mt-0.5">
+                  MERN + Next.js 14
+                </div>
               </div>
 
-              <div className="p-4 rounded-xl glass-panel border border-border">
-                <div className="flex items-center gap-2.5 text-accent-emerald font-semibold text-sm mb-1.5">
-                  <ShieldCheck className="w-4 h-4" />
-                  <span>Security & Integrity</span>
+              <div className="p-3 bg-[#161a22] border border-border/80">
+                <div className="text-[10px] font-mono-hud text-brand-lime font-bold">
+                  BACKEND &amp; AI
                 </div>
-                <p className="text-xs text-text-muted leading-relaxed">
-                  AES-256 encryption, TOTP 2FA, HMAC webhooks, Zod request validation, and multi-tier RBAC across all sensitive flows.
-                </p>
+                <div className="text-xs font-bold text-foreground mt-0.5">
+                  FastAPI + Python
+                </div>
               </div>
 
-              <div className="p-4 rounded-xl glass-panel border border-border">
-                <div className="flex items-center gap-2.5 text-accent-indigo font-semibold text-sm mb-1.5">
-                  <Zap className="w-4 h-4" />
-                  <span>Data & AI Integration</span>
+              <div className="p-3 bg-[#161a22] border border-border/80 col-span-2 sm:col-span-1">
+                <div className="text-[10px] font-mono-hud text-brand-lime font-bold">
+                  DATA STORES
                 </div>
-                <p className="text-xs text-text-muted leading-relaxed">
-                  Translating real-world operational challenges into applied ML, custom NLP pipelines (TF-IDF), and algorithmic solvers.
-                </p>
-              </div>
-
-              <div className="p-4 rounded-xl glass-panel border border-border">
-                <div className="flex items-center gap-2.5 text-accent-amber font-semibold text-sm mb-1.5">
-                  <TerminalSquare className="w-4 h-4" />
-                  <span>Automated Quality Assurance</span>
+                <div className="text-xs font-bold text-foreground mt-0.5">
+                  Postgres / Mongo / MySQL
                 </div>
-                <p className="text-xs text-text-muted leading-relaxed">
-                  Rigorous test suites using Chrome DevTools Protocol (CDP) and unit harnesses verifying accessibility, XSS immunity, and multi-viewport fidelity.
-                </p>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Animated Key Metrics HUD */}
-          <div className="lg:col-span-5 space-y-4">
-            <div className="p-6 rounded-2xl glass-panel border border-accent-cyan/25 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-accent-cyan/5 rounded-full blur-2xl pointer-events-none" />
-
-              <div className="text-xs font-mono-hud text-accent-cyan uppercase tracking-wider mb-6 flex items-center justify-between">
-                <span>System Verified Metrics</span>
-                <span className="w-2 h-2 rounded-full bg-accent-emerald animate-pulse" />
+          {/* Right Bento Quadrants (5 cols) */}
+          <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+            {/* Architectural Rigor */}
+            <div className="p-5 rounded-sm bg-[#11141a] border border-border hover:border-brand-lime/40 transition-colors">
+              <div className="flex items-center gap-2 text-brand-lime text-xs font-mono-hud font-bold uppercase mb-1.5">
+                <Server className="w-3.5 h-3.5" />
+                <span>Sub-100ms API Execution</span>
               </div>
+              <p className="text-xs text-text-muted leading-relaxed">
+                Relational schema normalization, database query indexing, and idempotency caching to prevent transaction collisions.
+              </p>
+            </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                {KEY_METRICS.map((metric, idx) => (
-                  <div
-                    key={idx}
-                    className="p-4 rounded-xl bg-surface/60 border border-border/60 hover:border-accent-cyan/40 transition-colors"
-                  >
-                    <div className="text-3xl sm:text-4xl font-display font-extrabold text-foreground">
-                      {metric.value}
-                    </div>
-                    <div className="text-xs font-semibold text-accent-cyan mt-1">
-                      {metric.label}
-                    </div>
-                    <div className="text-[11px] text-text-muted mt-0.5 leading-snug">
-                      {metric.detail}
-                    </div>
-                  </div>
-                ))}
+            {/* Cryptographic Security */}
+            <div className="p-5 rounded-sm bg-[#11141a] border border-border hover:border-brand-lime/40 transition-colors">
+              <div className="flex items-center gap-2 text-brand-orange text-xs font-mono-hud font-bold uppercase mb-1.5">
+                <Shield className="w-3.5 h-3.5" />
+                <span>Defense-in-Depth Security</span>
               </div>
+              <p className="text-xs text-text-muted leading-relaxed">
+                Zero-trust RBAC access controls, AES-256-GCM data encryption, HMAC webhooks, and Zod input validation schemas.
+              </p>
+            </div>
 
-              <div className="mt-6 pt-4 border-t border-border/50 text-xs font-mono-hud text-text-muted flex items-center justify-between">
-                <span>Core Target: SDE / Full-Stack</span>
-                <span className="text-foreground font-semibold">Ready to Deploy</span>
+            {/* Automated QA Harness */}
+            <div className="p-5 rounded-sm bg-[#11141a] border border-border hover:border-brand-lime/40 transition-colors">
+              <div className="flex items-center gap-2 text-white text-xs font-mono-hud font-bold uppercase mb-1.5">
+                <Terminal className="w-3.5 h-3.5 text-brand-lime" />
+                <span>Automated CDP Quality Assurance</span>
               </div>
+              <p className="text-xs text-text-muted leading-relaxed">
+                Over 50 automated tests authored using Chrome DevTools Protocol and Node.js covering multi-viewport UX and accessibility.
+              </p>
             </div>
           </div>
         </div>

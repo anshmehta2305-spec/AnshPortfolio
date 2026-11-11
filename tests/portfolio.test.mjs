@@ -43,19 +43,19 @@ function getContrastRatio(rgb1, rgb2) {
 }
 
 test("Accessibility: Primary text contrast meets WCAG AAA standards (> 7:1)", () => {
-  // Background: #07090e -> rgb(7, 9, 14)
-  const bg = [7, 9, 14];
-  // Cyan Accent / Highlights: #00f0ff -> rgb(0, 240, 255)
-  const cyan = [0, 240, 255];
-  // Foreground White: #f8fafc -> rgb(248, 250, 252)
-  const white = [248, 250, 252];
+  // Industrial Charcoal Background: #090a0d -> rgb(9, 10, 13)
+  const bg = [9, 10, 13];
+  // Acid Lime Accent / Highlights: #d4ff00 -> rgb(212, 255, 0)
+  const lime = [212, 255, 0];
+  // Foreground White: #f4f5f7 -> rgb(244, 245, 247)
+  const white = [244, 245, 247];
 
   const contrastWhite = getContrastRatio(bg, white);
-  const contrastCyan = getContrastRatio(bg, cyan);
+  const contrastLime = getContrastRatio(bg, lime);
 
   // WCAG AAA requires >= 7:1 for normal text
   assert.ok(contrastWhite >= 15.0, `White contrast ratio ${contrastWhite} meets WCAG AAA`);
-  assert.ok(contrastCyan >= 10.0, `Cyan contrast ratio ${contrastCyan} meets WCAG AAA`);
+  assert.ok(contrastLime >= 15.0, `Acid Lime contrast ratio ${contrastLime} meets WCAG AAA (>15:1)`);
 });
 
 // Test 3: Central Content Verification
@@ -84,3 +84,4 @@ test("Content Verification: Required engineer data & projects are populated", as
   // Verify 3 certifications
   assert.equal(CERTIFICATIONS.length, 3);
 });
+

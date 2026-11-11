@@ -2,118 +2,98 @@
 
 import React, { useState } from "react";
 import { SKILL_CATEGORIES } from "@/data/content";
-import { Cpu, CheckCircle, Sparkles, Filter } from "lucide-react";
+import { Cpu, Terminal, CheckSquare, Layers } from "lucide-react";
 
 export default function SkillsSection() {
-  const [activeCategory, setActiveCategory] = useState<string>("All");
-
-  const categories = ["All", ...SKILL_CATEGORIES.map((cat) => cat.category)];
-
-  const displayedCategories =
-    activeCategory === "All"
-      ? SKILL_CATEGORIES
-      : SKILL_CATEGORIES.filter((cat) => cat.category === activeCategory);
+  const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <section id="skills" className="py-24 relative border-t border-border/40">
+    <section id="skills" className="py-24 relative border-b border-border bg-[#0a0c10]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 pb-4 border-b border-border gap-4">
           <div>
-            <div className="flex items-center gap-2 mb-3">
-              <span className="p-1.5 rounded-md bg-accent-cyan/10 border border-accent-cyan/30 text-accent-cyan">
-                <Cpu className="w-4 h-4" />
-              </span>
-              <span className="text-xs font-mono-hud text-accent-cyan uppercase tracking-wider">
-                03 // Technical Competency Radar
+            <div className="flex items-center gap-2 mb-2">
+              <span className="w-2.5 h-2.5 bg-brand-lime inline-block" />
+              <span className="text-xs font-mono-hud text-brand-lime uppercase font-bold tracking-widest">
+                SECTION [03] // SYSTEM CAPABILITY MATRIX
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-display font-bold text-foreground tracking-tight">
-              Classified Stack & Tooling
+            <h2 className="text-3xl sm:text-4xl font-display font-extrabold uppercase text-foreground tracking-tight">
+              Classified Engineering Competencies
             </h2>
-            <p className="text-sm text-text-muted mt-2 max-w-xl">
-              From low-level data structures and algorithmic complexity to distributed cloud deployments and security compliance.
-            </p>
           </div>
-
-          {/* Category Filter Pills */}
-          <div className="flex flex-wrap items-center gap-2">
-            <Filter className="w-3.5 h-3.5 text-text-muted hidden sm:inline-block mr-1" />
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-mono-hud transition-all ${
-                  activeCategory === cat
-                    ? "bg-accent-cyan text-background font-bold shadow-[0_0_12px_rgba(0,240,255,0.4)]"
-                    : "glass-panel border border-border text-text-muted hover:text-foreground hover:border-accent-cyan/40"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
+          <div className="text-xs font-mono-hud text-text-muted">
+            TOTAL CAPABILITIES: 40+ // INDUSTRIAL VERIFIED
           </div>
         </div>
 
-        {/* Skills Category Grids */}
-        <div className="space-y-8">
-          {displayedCategories.map((group) => (
-            <div
-              key={group.category}
-              className="p-6 sm:p-8 rounded-2xl glass-panel border border-border/80 hover:border-accent-cyan/30 transition-all"
-            >
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 pb-4 border-b border-border/50">
-                <div>
-                  <h3 className="text-lg font-display font-bold text-foreground flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-accent-cyan" />
-                    <span>{group.category}</span>
-                  </h3>
-                  <p className="text-xs text-text-muted mt-0.5 font-mono-hud">
-                    {group.description}
-                  </p>
-                </div>
-                <span className="text-xs font-mono-hud text-accent-cyan font-semibold">
-                  {group.skills.length} Capabilities
-                </span>
+        {/* Industrial Category Switcher Bar */}
+        <div className="flex items-center gap-1 overflow-x-auto pb-4 mb-6 border-b border-border/80 scrollbar-none">
+          {SKILL_CATEGORIES.map((cat, idx) => {
+            const isActive = idx === activeTab;
+            return (
+              <button
+                key={cat.category}
+                onClick={() => setActiveTab(idx)}
+                className={`px-4 py-2 text-xs font-mono-hud uppercase whitespace-nowrap transition-all border ${
+                  isActive
+                    ? "bg-brand-lime text-black font-extrabold border-brand-lime"
+                    : "bg-[#11141a] text-text-muted border-border hover:text-foreground hover:bg-[#161a22]"
+                }`}
+              >
+                [0{idx + 1}] {cat.category}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Active Category Display Panel */}
+        <div className="p-6 sm:p-8 rounded-sm bg-[#11141a] border border-border shadow-cad">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-border/60 gap-3 mb-6">
+            <div>
+              <div className="text-xs font-mono-hud text-brand-lime font-bold uppercase">
+                MODULE 0{activeTab + 1} SPECIFICATION
               </div>
-
-              {/* Skills Interactive Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
-                {group.skills.map((skill) => (
-                  <div
-                    key={skill.name}
-                    className="group relative p-3 rounded-xl bg-surface/60 border border-border hover:border-accent-cyan/50 hover:bg-surface-card-hover transition-all cursor-default"
-                  >
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="text-xs font-semibold text-foreground group-hover:text-accent-cyan transition-colors truncate">
-                        {skill.name}
-                      </span>
-                      {skill.featured && (
-                        <CheckCircle className="w-3.5 h-3.5 text-accent-cyan flex-shrink-0" />
-                      )}
-                    </div>
-
-                    <div className="mt-2 flex items-center justify-between text-[10px] font-mono-hud text-text-muted">
-                      <span>{skill.level || "Proficient"}</span>
-                      {skill.badge && (
-                        <span className="px-1.5 py-0.5 rounded bg-accent-cyan/10 text-accent-cyan font-bold">
-                          {skill.badge}
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Tooltip on hover */}
-                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block z-20 w-44 p-2 rounded-lg bg-surface-card border border-accent-cyan/40 shadow-xl text-center text-[11px] font-mono-hud text-foreground pointer-events-none animate-in fade-in zoom-in-95 duration-150">
-                      <div>{skill.name}</div>
-                      <div className="text-[10px] text-accent-cyan mt-0.5">
-                        Category: {group.category}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <h3 className="text-xl font-display font-extrabold uppercase text-foreground mt-0.5">
+                {SKILL_CATEGORIES[activeTab].category}
+              </h3>
+              <p className="text-xs font-mono-hud text-text-muted mt-1">
+                {SKILL_CATEGORIES[activeTab].description}
+              </p>
             </div>
-          ))}
+            <span className="text-xs font-mono-hud text-brand-lime font-bold px-3 py-1 bg-black/40 border border-brand-lime/30">
+              {SKILL_CATEGORIES[activeTab].skills.length} VERIFIED STACK ITEMS
+            </span>
+          </div>
+
+          {/* Machined Skills Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+            {SKILL_CATEGORIES[activeTab].skills.map((skill) => (
+              <div
+                key={skill.name}
+                className="p-3.5 rounded-sm bg-[#161a22] border border-border hover:border-brand-lime/60 transition-all flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-1 mb-1.5">
+                    <span className="w-1.5 h-1.5 rounded-none bg-brand-lime inline-block" />
+                    {skill.badge && (
+                      <span className="text-[9px] font-mono-hud font-bold px-1 py-0.2 bg-brand-lime/10 text-brand-lime border border-brand-lime/30">
+                        {skill.badge}
+                      </span>
+                    )}
+                  </div>
+                  <div className="text-xs font-bold text-foreground font-sans">
+                    {skill.name}
+                  </div>
+                </div>
+
+                <div className="mt-3 pt-2 border-t border-border/50 text-[10px] font-mono-hud text-text-muted uppercase">
+                  {skill.level || "Proficient"}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

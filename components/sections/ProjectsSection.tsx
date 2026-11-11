@@ -1,16 +1,17 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import { PROJECTS, Project } from "@/data/content";
 import {
-  Code2,
+  Layers,
   ExternalLink,
   Github,
+  CheckCircle,
+  FileCode,
+  TrendingUp,
+  AlertTriangle,
   ArrowRight,
-  ChevronLeft,
-  ChevronRight,
-  Layers,
-  Sparkles,
+  Terminal,
 } from "lucide-react";
 
 interface ProjectsSectionProps {
@@ -18,172 +19,194 @@ interface ProjectsSectionProps {
 }
 
 export default function ProjectsSection({ onOpenCaseStudy }: ProjectsSectionProps) {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-
-  const scrollLeft = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: -420, behavior: "smooth" });
-    }
-  };
-
-  const scrollRight = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: 420, behavior: "smooth" });
-    }
-  };
+  const [selectedIdx, setSelectedIdx] = useState(0);
+  const activeProject = PROJECTS[selectedIdx];
 
   return (
-    <section id="projects" className="py-24 relative border-t border-border/40 overflow-hidden">
+    <section id="projects" className="py-24 relative border-b border-border bg-[#090a0d]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 pb-4 border-b border-border gap-4">
           <div>
-            <div className="flex items-center gap-2 mb-3">
-              <span className="p-1.5 rounded-md bg-accent-cyan/10 border border-accent-cyan/30 text-accent-cyan">
-                <Code2 className="w-4 h-4" />
-              </span>
-              <span className="text-xs font-mono-hud text-accent-cyan uppercase tracking-wider">
-                02 // Selected Architectures
+            <div className="flex items-center gap-2 mb-2">
+              <span className="w-2.5 h-2.5 bg-brand-lime inline-block" />
+              <span className="text-xs font-mono-hud text-brand-lime uppercase font-bold tracking-widest">
+                SECTION [02] // VERIFIED PRODUCTION ARCHITECTURES
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-display font-bold text-foreground tracking-tight">
-              Featured Production Systems
+            <h2 className="text-3xl sm:text-4xl font-display font-extrabold uppercase text-foreground tracking-tight">
+              System Blueprints &amp; Case Studies
             </h2>
-            <p className="text-sm text-text-muted mt-2 max-w-xl">
-              Engineered end-to-end: from multi-tier relational schemas and security barriers to high-performance client rendering and automated test suites.
-            </p>
           </div>
-
-          {/* Desktop Carousel Controls */}
-          <div className="hidden sm:flex items-center gap-2">
-            <button
-              onClick={scrollLeft}
-              className="p-2.5 rounded-xl border border-border bg-surface hover:border-accent-cyan/50 text-foreground transition-all hover:bg-surface-card-hover focus:outline-none"
-              aria-label="Scroll projects left"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button
-              onClick={scrollRight}
-              className="p-2.5 rounded-xl border border-border bg-surface hover:border-accent-cyan/50 text-foreground transition-all hover:bg-surface-card-hover focus:outline-none"
-              aria-label="Scroll projects right"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
+          <div className="text-xs font-mono-hud text-text-muted">
+            INDEX: [0{selectedIdx + 1}/0{PROJECTS.length}] // INTERACTIVE DOSSIER
           </div>
         </div>
 
-        {/* Projects Gallery Container (Desktop Horizontal Scroll, Mobile Stacked) */}
-        <div
-          ref={scrollContainerRef}
-          className="flex flex-col sm:flex-row gap-6 overflow-x-auto pb-6 sm:snap-x sm:snap-mandatory scrollbar-none"
-          style={{ scrollbarWidth: "none" }}
-        >
-          {PROJECTS.map((project, index) => (
-            <div
-              key={project.id}
-              className="w-full sm:w-[480px] lg:w-[520px] flex-shrink-0 sm:snap-start glass-panel rounded-2xl border border-border/80 hover:border-accent-cyan/40 p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:shadow-[0_10px_30px_rgba(0,0,0,0.4),0_0_20px_rgba(0,240,255,0.15)] group"
-            >
-              {/* Top Meta Header */}
+        {/* Industrial CAD Architecture Inspector Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          {/* Left Column: Technical Selector List (4 cols) */}
+          <div className="lg:col-span-4 space-y-2">
+            {PROJECTS.map((proj, idx) => {
+              const isSelected = idx === selectedIdx;
+              return (
+                <button
+                  key={proj.id}
+                  onClick={() => setSelectedIdx(idx)}
+                  className={`w-full text-left p-4 rounded-sm border transition-all text-xs font-mono-hud flex items-start justify-between ${
+                    isSelected
+                      ? "bg-[#161a22] border-brand-lime text-foreground shadow-tactile"
+                      : "bg-[#11141a] border-border text-text-muted hover:text-foreground hover:bg-[#141820]"
+                  }`}
+                >
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2">
+                      <span className={`font-bold ${isSelected ? "text-brand-lime" : "text-text-muted"}`}>
+                        0{idx + 1} //
+                      </span>
+                      <span className="font-bold text-sm text-foreground uppercase tracking-tight">
+                        {proj.title}
+                      </span>
+                    </div>
+                    <div className="text-[11px] text-text-muted line-clamp-1">
+                      {proj.subtitle}
+                    </div>
+                  </div>
+                  <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-sm ${
+                    isSelected ? "bg-brand-lime text-black" : "bg-black/50 text-text-muted"
+                  }`}>
+                    {proj.tag}
+                  </span>
+                </button>
+              );
+            })}
+
+            {/* Quick summary card */}
+            <div className="p-4 rounded-sm bg-[#11141a]/60 border border-border/80 text-[11px] font-mono-hud text-text-muted">
+              <span className="text-brand-lime font-bold uppercase block mb-1">
+                // ARCHITECTURAL BENCHMARK:
+              </span>
+              Every system is engineered with end-to-end relational modeling, input validation, and automated test coverage.
+            </div>
+          </div>
+
+          {/* Right Column: Active Project Blueprint Dossier (8 cols) */}
+          <div className="lg:col-span-8 p-6 sm:p-8 rounded-sm bg-[#11141a] border border-border shadow-cad">
+            {/* Dossier Header */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-border/80 gap-4">
               <div>
-                <div className="flex items-center justify-between gap-2 mb-4">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs font-mono-hud text-accent-cyan font-semibold">
-                      0{index + 1} //
-                    </span>
-                    <span className="px-2.5 py-0.5 rounded-full text-xs font-mono-hud bg-surface border border-border text-text-muted">
-                      {project.tag}
-                    </span>
-                  </div>
-                  <span className="text-xs font-mono-hud text-text-muted">
-                    {project.period}
-                  </span>
+                <div className="flex items-center gap-2 text-xs font-mono-hud text-brand-lime font-bold mb-1">
+                  <span>SPECIFICATION: 0{selectedIdx + 1}</span>
+                  <span>//</span>
+                  <span>{activeProject.period}</span>
                 </div>
-
-                {/* Title & Role */}
-                <h3 className="text-2xl font-display font-bold text-foreground group-hover:text-accent-cyan transition-colors">
-                  {project.title}
+                <h3 className="text-2xl sm:text-3xl font-display font-extrabold uppercase text-foreground">
+                  {activeProject.title}
                 </h3>
-                <p className="text-sm font-medium text-text-muted mt-1">
-                  {project.subtitle}
+                <p className="text-sm font-mono-hud text-brand-lime font-semibold mt-1">
+                  {activeProject.subtitle}
                 </p>
-
-                {/* Description snippet */}
-                <p className="text-xs text-text-muted/90 mt-4 leading-relaxed line-clamp-3">
-                  {project.description}
-                </p>
-
-                {/* Metric callout badge */}
-                <div className="mt-5 p-3 rounded-xl bg-accent-cyan/5 border border-accent-cyan/20 flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Sparkles className="w-3.5 h-3.5 text-accent-cyan" />
-                    <span className="text-xs font-mono-hud text-foreground font-semibold">
-                      {project.highlightMetric}
-                    </span>
-                  </div>
-                  <span className="text-[11px] font-mono-hud text-text-muted">
-                    {project.highlightLabel}
-                  </span>
-                </div>
-
-                {/* Tech Stack Pills */}
-                <div className="mt-5 flex flex-wrap gap-1.5">
-                  {project.stack.slice(0, 5).map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2.5 py-1 rounded-md text-[11px] font-mono-hud bg-surface/80 border border-border text-foreground/80"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                  {project.stack.length > 5 && (
-                    <span className="px-2 py-1 rounded-md text-[11px] font-mono-hud text-text-muted">
-                      +{project.stack.length - 5}
-                    </span>
-                  )}
-                </div>
               </div>
 
-              {/* Bottom Action Footer */}
-              <div className="mt-8 pt-5 border-t border-border/60 flex items-center justify-between">
-                <button
-                  onClick={() => onOpenCaseStudy(project)}
-                  className="inline-flex items-center gap-1.5 text-xs font-mono-hud font-semibold text-accent-cyan hover:underline"
-                >
-                  <Layers className="w-3.5 h-3.5" />
-                  <span>Case Study & Architecture</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                </button>
+              {/* Action Buttons */}
+              <div className="flex items-center gap-2">
+                {activeProject.liveUrl && (
+                  <a
+                    href={activeProject.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-sm bg-brand-lime text-black font-mono-hud font-bold text-xs uppercase hover:bg-white transition-colors"
+                  >
+                    <span>LIVE</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                )}
+                {activeProject.githubUrl && (
+                  <a
+                    href={activeProject.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-sm bg-[#161a22] border border-border text-foreground hover:border-brand-lime font-mono-hud font-semibold text-xs transition-colors"
+                  >
+                    <Github className="w-3.5 h-3.5" />
+                    <span>REPO</span>
+                  </a>
+                )}
+              </div>
+            </div>
 
-                <div className="flex items-center gap-2">
-                  {project.githubUrl && (
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 rounded-lg border border-border bg-surface hover:text-foreground text-text-muted hover:border-accent-cyan/40 transition-colors"
-                      title="View GitHub Repository"
-                      aria-label={`${project.title} GitHub repo`}
-                    >
-                      <Github className="w-4 h-4" />
-                    </a>
-                  )}
-                  {project.liveUrl && (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 rounded-lg border border-border bg-surface hover:text-foreground text-text-muted hover:border-accent-cyan/40 transition-colors"
-                      title="View Live Deployment"
-                      aria-label={`${project.title} live link`}
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
-                  )}
+            {/* Problem & Role */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
+              <div className="p-4 rounded-sm bg-[#161a22] border border-border/80">
+                <div className="text-[10px] font-mono-hud text-brand-orange font-bold uppercase mb-1 flex items-center gap-1">
+                  <AlertTriangle className="w-3 h-3" />
+                  <span>PROBLEM ADDRESSED</span>
+                </div>
+                <p className="text-xs text-text-muted leading-relaxed">
+                  {activeProject.problem}
+                </p>
+              </div>
+
+              <div className="p-4 rounded-sm bg-[#161a22] border border-border/80">
+                <div className="text-[10px] font-mono-hud text-brand-lime font-bold uppercase mb-1 flex items-center gap-1">
+                  <Terminal className="w-3 h-3" />
+                  <span>ENGINEER ROLE</span>
+                </div>
+                <p className="text-xs font-semibold text-foreground mb-1">
+                  {activeProject.role}
+                </p>
+                <div className="text-[11px] font-mono-hud text-text-muted">
+                  Metric: <strong className="text-brand-lime">{activeProject.highlightMetric}</strong>
                 </div>
               </div>
             </div>
-          ))}
+
+            {/* Key Deliverables */}
+            <div className="space-y-2 mb-6">
+              <div className="text-[11px] font-mono-hud text-foreground font-bold uppercase tracking-wider">
+                // SYSTEM DELIVERABLES &amp; ACHIEVEMENTS:
+              </div>
+              <ul className="space-y-2">
+                {activeProject.keyFeatures.slice(0, 3).map((feat, idx) => (
+                  <li key={idx} className="flex items-start gap-2.5 text-xs text-text-muted leading-relaxed">
+                    <CheckCircle className="w-3.5 h-3.5 text-brand-lime flex-shrink-0 mt-0.5" />
+                    <span>{feat}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Stack Chips */}
+            <div className="mb-6">
+              <div className="text-[10px] font-mono-hud text-text-muted uppercase mb-2">
+                TECH STACK PIPELINE:
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {activeProject.stack.map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-2.5 py-1 rounded-sm text-[11px] font-mono-hud bg-[#161a22] border border-border/90 text-foreground"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Footer trigger to open deep case study */}
+            <div className="pt-4 border-t border-border flex items-center justify-between">
+              <button
+                onClick={() => onOpenCaseStudy(activeProject)}
+                className="inline-flex items-center gap-2 text-xs font-mono-hud font-bold uppercase text-brand-lime hover:underline cursor-pointer"
+              >
+                <Layers className="w-4 h-4" />
+                <span>OPEN FULL TECHNICAL CASE STUDY &amp; ARCHITECTURE DIAGRAM &rarr;</span>
+              </button>
+              <span className="text-[10px] font-mono-hud text-text-muted">
+                ZOD / RELATIONAL / SECURE
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </section>

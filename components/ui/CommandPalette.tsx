@@ -26,17 +26,17 @@ interface CommandPaletteProps {
 }
 
 const ICON_MAP: Record<string, React.ReactNode> = {
-  User: <User className="w-4 h-4 text-accent-cyan" />,
-  Code: <Code className="w-4 h-4 text-accent-indigo" />,
-  Cpu: <Cpu className="w-4 h-4 text-accent-emerald" />,
-  Briefcase: <Briefcase className="w-4 h-4 text-accent-amber" />,
-  GraduationCap: <GraduationCap className="w-4 h-4 text-sky-400" />,
-  Mail: <Mail className="w-4 h-4 text-rose-400" />,
-  Copy: <Copy className="w-4 h-4 text-accent-cyan" />,
-  FileText: <FileText className="w-4 h-4 text-emerald-400" />,
-  Github: <Github className="w-4 h-4 text-foreground" />,
-  Linkedin: <Linkedin className="w-4 h-4 text-blue-500" />,
-  Sun: <Sun className="w-4 h-4 text-yellow-400" />,
+  User: <User className="w-3.5 h-3.5 text-brand-lime" />,
+  Code: <Code className="w-3.5 h-3.5 text-brand-lime" />,
+  Cpu: <Cpu className="w-3.5 h-3.5 text-brand-lime" />,
+  Briefcase: <Briefcase className="w-3.5 h-3.5 text-brand-lime" />,
+  GraduationCap: <GraduationCap className="w-3.5 h-3.5 text-brand-lime" />,
+  Mail: <Mail className="w-3.5 h-3.5 text-brand-orange" />,
+  Copy: <Copy className="w-3.5 h-3.5 text-brand-lime" />,
+  FileText: <FileText className="w-3.5 h-3.5 text-brand-lime" />,
+  Github: <Github className="w-3.5 h-3.5 text-foreground" />,
+  Linkedin: <Linkedin className="w-3.5 h-3.5 text-brand-lime" />,
+  Sun: <Sun className="w-3.5 h-3.5 text-brand-lime" />,
 };
 
 export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
@@ -44,7 +44,6 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [copied, setCopied] = useState(false);
 
-  // Filter items based on query
   const filteredItems = useMemo(() => {
     if (!query.trim()) return COMMAND_PALETTE_ITEMS;
     return COMMAND_PALETTE_ITEMS.filter((item) =>
@@ -79,7 +78,6 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
     [onClose]
   );
 
-  // Keyboard navigation
   useEffect(() => {
     if (!isOpen) return;
     setSelectedIndex(0);
@@ -109,30 +107,30 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4 bg-background/80 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-start justify-center pt-24 px-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-150"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-label="Command Palette"
     >
       <div
-        className="w-full max-w-xl glass-panel rounded-xl shadow-2xl border border-accent-cyan/20 overflow-hidden transform animate-in zoom-in-95 duration-200"
+        className="w-full max-w-xl bg-[#0e1117] rounded-sm border border-brand-lime shadow-2xl overflow-hidden animate-in zoom-in-95 duration-150"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Search Input Bar */}
-        <div className="flex items-center gap-3 px-4 py-3 border-b border-border bg-surface/40">
-          <Search className="w-5 h-5 text-accent-cyan" />
+        <div className="flex items-center gap-3 px-4 py-3 border-b border-border bg-[#11141a]">
+          <Search className="w-4 h-4 text-brand-lime" />
           <input
             type="text"
-            placeholder="Type a command or search sections..."
+            placeholder="Type a command or filter routines (e.g. projects, resume, email)..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-full bg-transparent text-foreground placeholder-text-muted focus:outline-none text-sm font-sans"
+            className="w-full bg-transparent text-foreground placeholder-text-muted/60 focus:outline-none text-xs font-mono-hud"
             autoFocus
           />
           <button
             onClick={onClose}
-            className="p-1 rounded-md text-text-muted hover:text-foreground hover:bg-surface/50"
+            className="p-1 rounded-sm text-text-muted hover:text-brand-lime"
             aria-label="Close command palette"
           >
             <X className="w-4 h-4" />
@@ -140,10 +138,10 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
         </div>
 
         {/* Results List */}
-        <div className="max-h-80 overflow-y-auto p-2 divide-y divide-border/20">
+        <div className="max-h-80 overflow-y-auto p-1 divide-y divide-border/20">
           {filteredItems.length === 0 ? (
-            <div className="py-8 text-center text-sm text-text-muted">
-              No matching commands found.
+            <div className="py-8 text-center text-xs font-mono-hud text-text-muted">
+              // NO MATCHING TELEMETRY ROUTINES
             </div>
           ) : (
             filteredItems.map((item, index) => {
@@ -153,25 +151,25 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
                   key={item.id}
                   onClick={() => handleSelect(item.action)}
                   onMouseEnter={() => setSelectedIndex(index)}
-                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-left text-sm transition-colors ${
+                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-sm text-left text-xs font-mono-hud transition-colors ${
                     isSelected
-                      ? "bg-accent-cyan/15 text-accent-cyan border border-accent-cyan/30"
-                      : "text-foreground/90 hover:bg-surface/50"
+                      ? "bg-brand-lime text-black font-extrabold"
+                      : "text-foreground/90 hover:bg-[#161a22]"
                   }`}
                 >
                   <div className="flex items-center gap-3">
-                    <span className="p-1.5 rounded-md bg-surface border border-border">
-                      {ICON_MAP[item.icon] || <Command className="w-4 h-4 text-text-muted" />}
+                    <span className="p-1 rounded-sm bg-black/40 border border-border">
+                      {ICON_MAP[item.icon] || <Command className="w-3.5 h-3.5 text-text-muted" />}
                     </span>
                     <div>
-                      <div className="font-medium text-foreground">{item.title}</div>
-                      <div className="text-xs text-text-muted font-mono-hud">
-                        {item.category}
+                      <div className="font-semibold">{item.title}</div>
+                      <div className={`text-[10px] ${isSelected ? "text-black/80" : "text-text-muted"}`}>
+                        [{item.category}]
                       </div>
                     </div>
                   </div>
-                  <span className="text-xs font-mono-hud text-text-muted uppercase">
-                    Select &crarr;
+                  <span className="text-[10px] uppercase font-bold">
+                    SELECT &crarr;
                   </span>
                 </button>
               );
@@ -179,16 +177,16 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
           )}
         </div>
 
-        {/* Footer shortcuts helper */}
-        <div className="px-4 py-2 border-t border-border bg-surface/30 flex items-center justify-between text-xs text-text-muted font-mono-hud">
+        {/* Footer shortcuts */}
+        <div className="px-4 py-2 border-t border-border bg-[#11141a] flex items-center justify-between text-[10px] text-text-muted font-mono-hud">
           <div className="flex items-center gap-3">
-            <span>&uarr;&darr; Navigate</span>
-            <span>&crarr; Run</span>
-            <span>Esc Close</span>
+            <span>&uarr;&darr; NAVIGATE</span>
+            <span>&crarr; EXECUTE</span>
+            <span>ESC DISMISS</span>
           </div>
           {copied && (
-            <span className="text-accent-emerald flex items-center gap-1 font-sans">
-              <Check className="w-3.5 h-3.5" /> Email copied!
+            <span className="text-brand-lime flex items-center gap-1 font-bold">
+              <Check className="w-3 h-3" /> EMAIL COPIED
             </span>
           )}
         </div>

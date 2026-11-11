@@ -17,37 +17,26 @@ const config: Config = {
         "surface-card-hover": "var(--surface-card-hover)",
         border: "var(--border)",
         "border-subtle": "var(--border-subtle)",
-        accent: {
-          cyan: "#00f0ff",
-          indigo: "#6366f1",
-          emerald: "#10b981",
-          amber: "#f59e0b",
-          primary: "var(--accent-primary)",
+        // Industrial Swiss / High-Craft Palette
+        brand: {
+          lime: "#d4ff00", // Acid Lime / Signal Chartreuse
+          orange: "#ff5500", // Signal Orange
+          cyan: "#00f0ff", // Technical Cyan
+          steel: "#8b949e",
+          dark: "#090a0d",
+          charcoal: "#12151c",
+          elevated: "#181c24",
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "sans-serif"],
+        sans: ["var(--font-inter)", "-apple-system", "sans-serif"],
         display: ["var(--font-space-grotesk)", "sans-serif"],
         mono: ["var(--font-jetbrains-mono)", "monospace"],
       },
-      keyframes: {
-        float: {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-10px)" },
-        },
-        pulseGlow: {
-          "0%, 100%": { opacity: "0.4", transform: "scale(1)" },
-          "50%": { opacity: "0.8", transform: "scale(1.05)" },
-        },
-        scanline: {
-          "0%": { transform: "translateY(-100%)" },
-          "100%": { transform: "translateY(1000%)" },
-        },
-      },
-      animation: {
-        float: "float 6s ease-in-out infinite",
-        "pulse-glow": "pulseGlow 4s ease-in-out infinite",
-        scanline: "scanline 8s linear infinite",
+      boxShadow: {
+        cad: "0 0 0 1px rgba(255, 255, 255, 0.08), 0 8px 24px -4px rgba(0, 0, 0, 0.6)",
+        "lime-glow": "0 0 20px -3px rgba(212, 255, 0, 0.35)",
+        tactile: "0 2px 0 0 rgba(255, 255, 255, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)",
       },
     },
   },

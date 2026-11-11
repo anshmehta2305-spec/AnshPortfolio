@@ -15,7 +15,6 @@ export default function MagneticCursor() {
   const smoothY = useSpring(cursorY, springConfig);
 
   useEffect(() => {
-    // Disable on touch devices and if user prefers reduced motion
     const isTouchDevice =
       "ontouchstart" in window || navigator.maxTouchPoints > 0;
     const prefersReducedMotion = window.matchMedia(
@@ -66,23 +65,23 @@ export default function MagneticCursor() {
 
   return (
     <>
-      {/* Outer follow ring */}
+      {/* Outer follow box (Machined CAD square) */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-50 rounded-full border border-accent-cyan/60 mix-blend-difference"
+        className="fixed top-0 left-0 pointer-events-none z-50 border border-brand-lime mix-blend-difference"
         style={{
           x: smoothX,
           y: smoothY,
           translateX: "-50%",
           translateY: "-50%",
-          width: isHovered ? 48 : 28,
-          height: isHovered ? 48 : 28,
-          backgroundColor: isHovered ? "rgba(0, 240, 255, 0.15)" : "transparent",
+          width: isHovered ? 44 : 24,
+          height: isHovered ? 44 : 24,
+          backgroundColor: isHovered ? "rgba(212, 255, 0, 0.2)" : "transparent",
         }}
         transition={{ type: "spring", damping: 20, stiffness: 300 }}
       />
-      {/* Center sharp dot */}
+      {/* Center point */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-50 w-1.5 h-1.5 bg-accent-cyan rounded-full shadow-[0_0_8px_#00f0ff]"
+        className="fixed top-0 left-0 pointer-events-none z-50 w-1.5 h-1.5 bg-brand-lime shadow-[0_0_6px_#d4ff00]"
         style={{
           x: cursorX,
           y: cursorY,
