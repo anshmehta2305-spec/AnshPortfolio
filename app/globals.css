@@ -131,3 +131,103 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+
+/* Light Mode Overrides when data-theme="light" or class="light" */
+[data-theme="light"],
+html.light {
+  background-color: #ffffff;
+  color: #0a0a0a;
+}
+
+[data-theme="light"] body,
+html.light body {
+  background-color: #ffffff;
+  color: #0a0a0a;
+}
+
+[data-theme="light"] section,
+html.light section {
+  background-color: #ffffff !important;
+}
+
+[data-theme="light"] .bg-\[\#0a0a0a\],
+html.light .bg-\[\#0a0a0a\] {
+  background-color: #ffffff !important;
+}
+
+[data-theme="light"] .bg-\[\#121212\],
+html.light .bg-\[\#121212\] {
+  background-color: #f6f7f9 !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="light"] .bg-\[\#161616\],
+html.light .bg-\[\#161616\] {
+  background-color: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+[data-theme="light"] .text-white,
+html.light .text-white {
+  color: #0a0a0a !important;
+}
+
+[data-theme="light"] .text-\[\#a0a0a0\],
+html.light .text-\[\#a0a0a0\] {
+  color: #4b5563 !important;
+}
+
+[data-theme="light"] .text-neutral-400,
+html.light .text-neutral-400 {
+  color: #4b5563 !important;
+}
+
+[data-theme="light"] .text-neutral-300,
+html.light .text-neutral-300 {
+  color: #1f2937 !important;
+}
+
+[data-theme="light"] .border-white\/\[0\.06\],
+[data-theme="light"] .border-white\/\[0\.08\],
+[data-theme="light"] .border-white\/10,
+html.light .border-white\/\[0\.06\],
+html.light .border-white\/\[0\.08\],
+html.light .border-white\/10 {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="light"] footer,
+html.light footer {
+  background-color: #f3f4f6 !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Floating pill navbar in light mode */
+[data-theme="light"] header div.rounded-full,
+html.light header div.rounded-full {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Hero Portrait gradient overlay in light mode */
+[data-theme="light"] #hero div[style*="linear-gradient"],
+html.light #hero div[style*="linear-gradient"] {
+  background: linear-gradient(to top, #ffffff 0%, transparent 28%),
+              linear-gradient(to right, #ffffff 0%, transparent 12%),
+              linear-gradient(to left, #ffffff 0%, transparent 12%) !important;
+}
+
+/* Ensure crimson buttons always maintain crisp white text */
+.bg-\[\#e50914\],
+.bg-red-600,
+[data-theme="light"] .bg-\[\#e50914\],
+[data-theme="light"] .bg-red-600 {
+  color: #ffffff !important;
+}
+
+[data-theme="light"] .bg-\[\#e50914\] *,
+[data-theme="light"] .bg-red-600 * {
+  color: #ffffff !important;
+}

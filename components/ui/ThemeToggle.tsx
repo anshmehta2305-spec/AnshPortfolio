@@ -7,51 +7,63 @@ export default function ThemeToggle() {
   const [theme, setTheme] = useState<"dark" | "light">("dark");
   const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-    const stored = localStorage.getItem("ansh-theme") as "dark" | "light" | null;
-    if (stored) {
-      setTheme(stored);
-    } else {
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      setTheme(prefersDark ? "dark" : "light");
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    const nextTheme = theme === "dark" ? "light" : "dark";
-    setTheme(nextTheme);
-    localStorage.setItem("ansh-theme", nextTheme);
-    if (nextTheme === "dark") {
-      document.documentElement.setAttribute("data-theme", "dark");
+  // Apply theme to DOM documentElement
+  const applyTheme = (t: "dark" | "light") => {
+    document.documentElement.setAttribute("data-theme", t);
+    if (t === "dark") {
       document.documentElement.classList.add("dark");
+      document.documentElement.classList.remove("light");
     } else {
-      document.documentElement.setAttribute("data-theme", "light");
+      document.documentElement.classList.add("light");
       document.documentElement.classList.remove("dark");
     }
   };
 
+  useEffect(() => {
+    setMounted(true);
+    // Dark-first priority: check localStorage, otherwise default to "dark"
+    const stored = localStorage.getItem("ansh-theme") as "dark" | "light" | null;
+    const initialTheme = stored === "light" ? "light" : "dark";
+    setTheme(initialTheme);
+    applyTheme(initialTheme);
+  }, []);
+
+  const toggleTheme = (e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    const nextTheme = theme === "dark" ? "light" : "dark";
+    setTheme(nextTheme);
+    try {
+      localStorage.setItem("ansh-theme", nextTheme);
+    } catch (err) {
+      // LocalStorage access handling if disabled
+    }
+    applyTheme(nextTheme);
+  };
+
   if (!mounted) {
     return (
-      <div className="w-9 h-9 rounded-full border border-border bg-surface/50" />
+      <div className="w-8 h-8 rounded-full border border-white/10 bg-neutral-900/50" />
     );
   }
 
   return (
     <button
+      type="button"
       onClick={toggleTheme}
-      aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-      className="relative p-2 rounded-lg border border-white/10 bg-[#161616] hover:bg-white/[0.06] text-neutral-300 hover:text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-600/50 hover:border-white/20"
-      title={`Toggle theme (current: ${theme})`}
+      aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+      title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+      className="relative p-2 rounded-full border border-white/10 dark:border-white/10 light:border-black/10 bg-neutral-900/80 hover:bg-neutral-800 text-neutral-300 hover:text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-600/50 cursor-pointer flex items-center justify-center flex-shrink-0"
     >
-      <div className="relative w-5 h-5 flex items-center justify-center">
+      <div className="relative w-4 h-4 flex items-center justify-center pointer-events-none">
         {theme === "dark" ? (
-          <Sun className="w-4 h-4 text-[#e50914] animate-in fade-in zoom-in duration-200" />
+          <Sun className="w-4 h-4 text-neutral-300 hover:text-white transition-colors" />
         ) : (
-          <Moon className="w-4 h-4 text-[#e50914] animate-in fade-in zoom-in duration-200" />
+          <Moon className="w-4 h-4 text-[#e50914] transition-colors" />
         )}
       </div>
     </button>
   );
 }
-
