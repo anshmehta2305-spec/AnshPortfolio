@@ -3,10 +3,10 @@
 import React, { useState, useEffect } from "react";
 import { NAV_LINKS, PERSONAL_INFO } from "@/data/content";
 import ThemeToggle from "@/components/ui/ThemeToggle";
-import { Command, Menu, X, FileDown } from "lucide-react";
+import { Menu, X, FileDown } from "lucide-react";
 
 interface NavbarProps {
-  onOpenCommandPalette: () => void;
+  onOpenCommandPalette?: () => void;
 }
 
 export default function Navbar({ onOpenCommandPalette }: NavbarProps) {
@@ -118,16 +118,6 @@ export default function Navbar({ onOpenCommandPalette }: NavbarProps) {
 
           {/* Right Action Utilities */}
           <div className="flex items-center gap-2 sm:gap-2.5 flex-shrink-0">
-            {/* Command Palette Trigger */}
-            <button
-              onClick={onOpenCommandPalette}
-              className="hidden lg:flex items-center gap-1.5 px-2.5 py-1.5 rounded-full border border-line-primary bg-bg-secondary hover:border-line-hover text-txt-secondary hover:text-txt-primary text-xs font-mono transition-colors shadow-sm"
-              title="Open Command Palette (Ctrl+K / Cmd+K)"
-            >
-              <Command className="w-3.5 h-3.5 text-txt-muted" />
-              <span>⌘K</span>
-            </button>
-
             {/* Theme Toggle */}
             <ThemeToggle />
 

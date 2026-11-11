@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     "WebGL",
     "Portfolio",
     "Parul University",
-    "Gujarat",
+    "India",
   ],
   authors: [{ name: PERSONAL_INFO.fullName, url: PERSONAL_INFO.portfolioDomain }],
   creator: PERSONAL_INFO.fullName,
