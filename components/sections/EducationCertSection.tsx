@@ -10,7 +10,7 @@ export default function EducationCertSection() {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         
         {/* Section Header */}
-        <div className="mb-14 pb-4 border-b border-line-primary">
+        <div className="mb-14 pb-4 border-b border-line-primary reveal-blur">
           <div className="flex items-center gap-2 mb-2">
             <span className="w-2 h-2 rounded-full bg-crimson" />
             <span className="text-xs uppercase font-medium tracking-widest text-txt-muted">

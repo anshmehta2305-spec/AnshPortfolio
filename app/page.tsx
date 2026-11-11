@@ -10,6 +10,7 @@ import MagneticCursor from "@/components/ui/MagneticCursor";
 import CommandPalette from "@/components/ui/CommandPalette";
 import CaseStudyModal from "@/components/ui/CaseStudyModal";
 import TerminalEasterEgg from "@/components/ui/TerminalEasterEgg";
+import ScrollBlurObserver from "@/components/ui/ScrollBlurObserver";
 
 import HeroSection from "@/components/sections/HeroSection";
 import AboutSection from "@/components/sections/AboutSection";
@@ -50,6 +51,9 @@ export default function Home() {
 
       {/* Desktop Magnetic Cursor */}
       <MagneticCursor />
+
+      {/* Global Scroll Reveal with Blur Observer */}
+      <ScrollBlurObserver />
 
       {/* Global Interactive Command Palette */}
       <CommandPalette

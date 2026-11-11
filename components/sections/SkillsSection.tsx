@@ -11,7 +11,7 @@ export default function SkillsSection() {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 pb-6 border-b border-line-primary gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 pb-6 border-b border-line-primary gap-4 reveal-blur">
           <div>
             <div className="flex items-center gap-2 mb-2">
               <span className="w-1.5 h-1.5 rounded-full bg-crimson inline-block" />

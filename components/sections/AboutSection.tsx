@@ -19,7 +19,7 @@ export default function AboutSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
           {/* Left Column: Bio & Core Philosophy (7 cols) */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="lg:col-span-7 space-y-6 reveal-blur">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-bold text-txt-primary tracking-tight leading-tight">
               Designing scalable software with architectural precision.
             </h2>
@@ -73,7 +73,7 @@ export default function AboutSection() {
           </div>
 
           {/* Right Column: Key Metrics (5 cols) */}
-          <div className="lg:col-span-5 p-8 rounded-lg bg-bg-card border border-line-primary shadow-theme space-y-6">
+          <div className="lg:col-span-5 p-8 rounded-lg bg-bg-card border border-line-primary shadow-theme space-y-6 reveal-blur">
             <div className="text-xs font-mono text-txt-muted uppercase tracking-widest pb-3 border-b border-line-primary">
               Verified Milestones
             </div>
