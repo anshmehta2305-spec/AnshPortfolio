@@ -418,7 +418,7 @@ export const EDUCATION: EducationItem[] = [
   {
     institution: "Parul University",
     degree: "Bachelor of Technology (B.Tech) — Computer Science & Engineering",
-    location: "Vadodara, Gujarat, India",
+    location: "Vadodara, India",
     periodOrYear: "Currently Pursuing (Final Year)",
     details:
       "Core Coursework: Data Structures & Algorithms, Database Management Systems, Operating Systems, Computer Networks, Software Engineering, Cloud Computing.",
@@ -426,16 +426,16 @@ export const EDUCATION: EducationItem[] = [
   {
     institution: "Government Polytechnic, Dahod (GTU)",
     degree: "Diploma in Computer Engineering",
-    location: "Dahod, Gujarat, India",
+    location: "Dahod, India",
     periodOrYear: "Completed 2024",
     grade: "CGPA: 6.57",
     details:
-      "Graduated under Gujarat Technological University (GTU) with practical focus on programming fundamentals, web technologies, and systems maintenance.",
+      "Graduated under Technological University (GTU) with practical focus on programming fundamentals, web technologies, and systems maintenance.",
   },
   {
     institution: "Shree Swaminarayan School",
     degree: "Central Board of Secondary Education (CBSE)",
-    location: "Bharuch, Gujarat, India",
+    location: "Bharuch, India",
     periodOrYear: "High School",
     details: "Science and mathematics foundation.",
   },

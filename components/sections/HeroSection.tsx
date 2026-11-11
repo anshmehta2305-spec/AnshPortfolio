@@ -36,7 +36,7 @@ export default function HeroSection() {
               <span className="text-neutral-600">|</span>
               <span className="text-neutral-400 flex items-center gap-1 text-[11px]">
                 <MapPin className="w-3 h-3 text-red-500" />
-                {PERSONAL_INFO.location}
+                India
               </span>
             </div>
 
