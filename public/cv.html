@@ -3,18 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Curriculum Vitae | Ansh Mehta</title>
+  <title>Ansh Mehta — Curriculum Vitae</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <style>
     :root {
-      --primary: #1e293b;
-      --text: #0f172a;
-      --muted: #475569;
+      --primary: #090a0d;
+      --text: #1a1e24;
+      --muted: #4b5563;
       --border: #e2e8f0;
-      --accent: #2563eb;
+      --accent: #0f172a;
+      --highlight: #8ab800;
     }
 
     * {
@@ -28,11 +29,11 @@
       color: var(--text);
       background-color: #f1f5f9;
       line-height: 1.5;
-      padding: 20px;
+      padding: 24px 20px;
     }
 
     .toolbar {
-      max-width: 820px;
+      max-width: 840px;
       margin: 0 auto 16px;
       display: flex;
       justify-content: space-between;
@@ -44,87 +45,92 @@
       align-items: center;
       gap: 8px;
       padding: 9px 16px;
-      border-radius: 6px;
+      border-radius: 4px;
       font-size: 0.88rem;
-      font-weight: 600;
+      font-weight: 700;
       text-decoration: none;
       cursor: pointer;
       border: 1px solid var(--border);
       background: white;
       color: var(--primary);
-      transition: all 0.2s ease;
+      transition: all 0.15s ease;
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
     }
 
     .btn-primary {
-      background: var(--accent);
-      color: white;
-      border-color: var(--accent);
+      background: #090a0d;
+      color: #d4ff00;
+      border-color: #090a0d;
     }
 
     .btn:hover {
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
 
     .cv-container {
-      max-width: 820px;
+      max-width: 840px;
       margin: 0 auto;
       background: white;
       padding: 44px 50px;
-      border-radius: 8px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-      border: 1px solid var(--border);
+      border-radius: 4px;
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.06);
+      border: 1px solid #cbd5e1;
     }
 
     header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      border-bottom: 2px solid var(--border);
-      padding-bottom: 20px;
-      margin-bottom: 24px;
+      border-bottom: 2px solid #0f172a;
+      padding-bottom: 18px;
+      margin-bottom: 22px;
     }
 
     .name-title h1 {
-      font-size: 1.95rem;
-      font-weight: 700;
-      color: var(--primary);
-      letter-spacing: -0.02em;
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: #090a0d;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
     }
 
     .subtitle {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--accent);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #334155;
       margin-top: 2px;
       margin-bottom: 8px;
+      font-family: 'JetBrains Mono', monospace;
     }
 
     .contact-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px;
-      font-size: 0.85rem;
+      gap: 12px;
+      font-size: 0.82rem;
       color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
     }
 
     .contact-links a {
-      color: var(--primary);
+      color: #090a0d;
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 600;
     }
 
     .contact-links a:hover {
-      color: var(--accent);
       text-decoration: underline;
     }
 
     .qr-badge {
       text-align: center;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       color: var(--muted);
       border: 1px solid var(--border);
       padding: 6px;
-      border-radius: 6px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
     }
 
     .qr-badge img {
@@ -135,20 +141,25 @@
     }
 
     section {
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
 
     h2 {
-      font-size: 0.98rem;
+      font-size: 0.92rem;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--primary);
-      border-bottom: 1.5px solid var(--border);
-      padding-bottom: 4px;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      letter-spacing: 0.08em;
+      color: #090a0d;
+      border-bottom: 1.5px solid #0f172a;
+      padding-bottom: 3px;
+      margin-bottom: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+    }
+
+    .summary-text {
+      font-size: 0.86rem;
+      color: #334155;
+      line-height: 1.55;
     }
 
     .item {
@@ -159,53 +170,57 @@
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      margin-bottom: 3px;
+      margin-bottom: 2px;
     }
 
     .item-title {
-      font-size: 0.98rem;
-      font-weight: 600;
-      color: var(--primary);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #090a0d;
     }
 
     .item-subtitle {
-      font-size: 0.88rem;
-      color: var(--muted);
-      font-weight: 500;
+      font-size: 0.84rem;
+      color: #475569;
+      font-weight: 600;
     }
 
     .item-date {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: #64748b;
-      font-weight: 500;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
     }
 
     ul.bullet-list {
       list-style-type: disc;
-      padding-left: 20px;
-      font-size: 0.88rem;
+      padding-left: 18px;
+      font-size: 0.84rem;
       color: #334155;
+      margin-top: 4px;
     }
 
     ul.bullet-list li {
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
 
     .skills-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.88rem;
+      font-size: 0.84rem;
     }
 
     .skills-table td {
-      padding: 4px 0;
+      padding: 3px 0;
       vertical-align: top;
     }
 
     .skill-cat {
-      font-weight: 600;
-      color: var(--primary);
-      width: 170px;
+      font-weight: 700;
+      color: #090a0d;
+      width: 180px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
     }
 
     .skill-items {
@@ -214,7 +229,7 @@
 
     @media print {
       @page {
-        margin: 12mm 15mm;
+        margin: 10mm 12mm;
         size: A4 portrait;
       }
       body {
@@ -244,27 +259,40 @@
 </head>
 <body>
   <div class="toolbar">
-    <a href="index.html" class="btn"><i class="fa-solid fa-arrow-left"></i> Back to Link Hub</a>
+    <a href="/" class="btn"><i class="fa-solid fa-arrow-left"></i> Portfolio Hub</a>
     <button class="btn btn-primary" onclick="window.print()"><i class="fa-solid fa-print"></i> Print / Save as PDF</button>
   </div>
 
   <div class="cv-container">
     <header>
       <div class="name-title">
-        <h1>Ansh Mehta</h1>
-        <div class="subtitle">Software Developer &bull; Full-Stack Engineer</div>
+        <h1>Ansh Minesh Mehta</h1>
+        <div class="subtitle">Full-Stack Developer &bull; Software Engineer</div>
         <div class="contact-links">
+          <span><i class="fa-solid fa-phone"></i> +91 9724585704</span>
+          <span>&bull;</span>
+          <span><i class="fa-solid fa-envelope"></i> <a href="mailto:ansh.mehta2305@gmail.com">ansh.mehta2305@gmail.com</a></span>
+          <span>&bull;</span>
+          <span><i class="fa-brands fa-linkedin"></i> <a href="https://www.linkedin.com/in/ansh-mehta-b86528406" target="_blank">linkedin/ansh-mehta</a></span>
+          <span>&bull;</span>
+          <span><i class="fa-brands fa-github"></i> <a href="https://github.com/anshmehta2305-spec" target="_blank">github/anshmehta2305-spec</a></span>
+          <span>&bull;</span>
           <span><i class="fa-solid fa-globe"></i> <a href="https://anshmehta.in/" target="_blank">anshmehta.in</a></span>
-          <span><i class="fa-brands fa-github"></i> <a href="https://github.com/" target="_blank">GitHub</a></span>
-          <span><i class="fa-brands fa-linkedin"></i> <a href="https://linkedin.com/" target="_blank">LinkedIn</a></span>
-          <span><i class="fa-solid fa-envelope"></i> <a href="mailto:ansh.mehta@example.com">Email</a></span>
         </div>
       </div>
       <div class="qr-badge">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://anshmehta.in/" alt="QR Code to anshmehta.in" />
-        <span>Scan Portfolio</span>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://anshmehta.in/" alt="QR to anshmehta.in" />
+        <span>anshmehta.in</span>
       </div>
     </header>
+
+    <!-- Summary -->
+    <section>
+      <h2>Summary</h2>
+      <p class="summary-text">
+        Final-year B.Tech Computer Science &amp; Engineering student and Full-Stack Developer with hands-on experience building and deploying production-style web applications using the MERN stack (MongoDB, Express.js, React.js, Node.js) and Python/FastAPI. Strong foundation in data structures, algorithms, and object-oriented programming, with practical skills in RESTful API development, database design (MySQL, MongoDB, PostgreSQL), authentication (JWT, 2FA), cloud deployment (AWS, Render, Vercel), and applying AI/ML to real-world problems. Seeking a Full-Stack Developer / Software Engineer role.
+      </p>
+    </section>
 
     <!-- Education -->
     <section>
@@ -272,9 +300,25 @@
       <div class="item">
         <div class="item-header">
           <span class="item-title">Parul University</span>
-          <span class="item-date">Vadodara, Gujarat, India</span>
+          <span class="item-date">Currently Pursuing (Final Year)</span>
         </div>
-        <div class="item-subtitle">Bachelor of Technology (B.Tech) - Artificial Intelligence & Machine Learning</div>
+        <div class="item-subtitle">Bachelor of Technology (B.Tech) – Computer Science &amp; Engineering</div>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <span class="item-title">Gujarat Technological University (Government Polytechnic, Dahod)</span>
+          <span class="item-date">2024</span>
+        </div>
+        <div class="item-subtitle">Diploma in Computer Engineering &bull; <strong>CGPA: 6.57</strong></div>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <span class="item-title">Shree Swaminarayan School, CBSE</span>
+          <span class="item-date">Bharuch, Gujarat</span>
+        </div>
+        <div class="item-subtitle">High School (CBSE)</div>
       </div>
     </section>
 
@@ -284,84 +328,147 @@
       <table class="skills-table">
         <tr>
           <td class="skill-cat">Languages:</td>
-          <td class="skill-items">Java, JavaScript (ES6+), Python, HTML5, CSS3, SQL</td>
+          <td class="skill-items">Java, JavaScript (ES6+), TypeScript, Python, HTML5, CSS3, SQL</td>
         </tr>
         <tr>
-          <td class="skill-cat">Frameworks & Libraries:</td>
-          <td class="skill-items">React.js, Next.js, Node.js, Express.js, Tailwind CSS</td>
+          <td class="skill-cat">Frontend:</td>
+          <td class="skill-items">React 18, Next.js 14, Tailwind CSS, Three.js (WebGL), GSAP, Vite, Responsive Design</td>
         </tr>
         <tr>
-          <td class="skill-cat">Core Competencies:</td>
-          <td class="skill-items">Data Structures & Algorithms (DSA), Object-Oriented Programming (OOP), RESTful APIs, Git/GitHub</td>
+          <td class="skill-cat">Backend &amp; APIs:</td>
+          <td class="skill-items">Node.js, Express.js, FastAPI, PHP, RESTful API Design, JWT, Session Management, 2FA (TOTP)</td>
         </tr>
         <tr>
-          <td class="skill-cat">AI & Specializations:</td>
-          <td class="skill-items">Artificial Intelligence, Machine Learning Fundamentals, Web Audio API</td>
+          <td class="skill-cat">Databases:</td>
+          <td class="skill-items">PostgreSQL, MongoDB, MySQL, Prisma ORM, Schema Normalization, Query Indexing</td>
+        </tr>
+        <tr>
+          <td class="skill-cat">Cloud &amp; Security:</td>
+          <td class="skill-items">AWS (EC2, S3, IAM, VPC), Git/GitHub, CI/CD, Render, Vercel, RBAC, AES-256 Encryption, Zod</td>
+        </tr>
+        <tr>
+          <td class="skill-cat">Data &amp; AI / Testing:</td>
+          <td class="skill-items">Machine Learning (Scikit-Learn), NLP (TF-IDF), Automated E2E testing via Chrome DevTools Protocol</td>
         </tr>
       </table>
     </section>
 
-    <!-- Featured Projects -->
+    <!-- Projects -->
     <section>
       <h2>Featured Projects</h2>
-      
+
       <div class="item">
         <div class="item-header">
-          <span class="item-title">Voxify &bull; Web Audio Application</span>
-          <span class="item-date"><a href="https://github.com/anshmehta/Voxify" target="_blank">GitHub Repo</a></span>
+          <span class="item-title">Portfolio Pro: Advisor-Client Mutual Fund Platform</span>
+          <span class="item-date">10/2026 – 11/2026</span>
         </div>
+        <div class="item-subtitle">Next.js 14, TypeScript, Prisma, NextAuth, Tailwind CSS, PostgreSQL, Vercel</div>
         <ul class="bullet-list">
-          <li>Architected an interactive voice and audio processing utility using modern JavaScript and Web Audio APIs.</li>
-          <li>Engineered low-latency audio capture and real-time visual feedback interface for seamless user interaction.</li>
+          <li>Built a full-stack platform (37 pages, 17 REST APIs) using Next.js 14 with investor, advisor, and admin workflows.</li>
+          <li>Implemented 13 financial calculators (SIP, SWP, Step-Up SIP, CAGR, LTCG/STCG tax) with interactive portfolio analytics dashboards.</li>
+          <li>Designed a 17-model relational schema in Prisma with foreign-key integrity, Zod validation, and automated seeding.</li>
+          <li>Secured investor data with AES-256-GCM encryption, HMAC-verified webhooks, and role-based access control across 8 user tiers.</li>
+          <li>Built a modular transaction engine with pluggable payment/exchange adapters and an idempotency layer to prevent duplicate orders.</li>
+          <li>Wrote 26 automated tests and deployed the app on Vercel.</li>
         </ul>
       </div>
 
       <div class="item">
         <div class="item-header">
-          <span class="item-title">Invoice Generator</span>
-          <span class="item-date"><a href="https://github.com/anshmehta/invoice-generator" target="_blank">GitHub Repo</a></span>
+          <span class="item-title">Avenor: Men's Grooming Salon Website</span>
+          <span class="item-date">09/2026 – 10/2026</span>
         </div>
+        <div class="item-subtitle">React 18, Vite, Three.js, GSAP, Tailwind CSS | Live: avenor-salon.vercel.app</div>
         <ul class="bullet-list">
-          <li>Built a dynamic client-side billing application enabling custom line-item computations, taxes, and instant PDF rendering.</li>
-          <li>Designed a clean, intuitive UI ensuring high performance and responsive layout across desktop and mobile devices.</li>
+          <li>Built a responsive SPA; measured 72 ms DOM-interactive and under 300 ms full load via Chrome DevTools Protocol (CDP).</li>
+          <li>Implemented dark/light theme with CSS custom properties and localStorage; primary buttons meet WCAG AAA contrast (11.3:1 to 15.9:1).</li>
+          <li>Developed a 5-step booking flow with form validation, a shopping cart drawer, and 3D WebGL visuals with Three.js and GSAP.</li>
+          <li>Authored a 24-test automated QA suite with Node.js and headless Chrome (CDP) covering 5 responsive breakpoints (360px to 1920px).</li>
         </ul>
       </div>
 
       <div class="item">
         <div class="item-header">
-          <span class="item-title">Expedia Web Platform Clone</span>
-          <span class="item-date"><a href="https://github.com/anshmehta/Expedia-clone" target="_blank">GitHub Repo</a></span>
+          <span class="item-title">AI Legal Text Clustering &bull; IPC Section Classifier</span>
+          <span class="item-date">08/2026 – 09/2026</span>
         </div>
+        <div class="item-subtitle">Python, FastAPI, Scikit-Learn, React, Vite, Tailwind CSS | Render &amp; Vercel</div>
         <ul class="bullet-list">
-          <li>Developed a responsive travel itinerary and flight booking web interface matching production design specifications.</li>
-          <li>Implemented interactive search filters, hotel cards, and multi-step user flow.</li>
+          <li>Built a full-stack AI web app classifying Indian Penal Code (IPC) sections from legal case descriptions using ML models (KNN, SVM, Random Forest, Extra Trees).</li>
+          <li>Implemented custom NLP pipeline using TF-IDF vectorization + structural feature engineering (weapon keywords, intent signals, financial terms) across 8+ IPC sections.</li>
+          <li>Engineered a RESTful FastAPI backend with JWT authentication, TOTP 2FA, rate limiting, session management, and audit logging.</li>
+          <li>Developed features: PDF/image (OCR) document upload, legal FIR report generation, multi-language translation, and admin dashboard.</li>
         </ul>
       </div>
 
       <div class="item">
         <div class="item-header">
-          <span class="item-title">Credit Card Validator Utility</span>
-          <span class="item-date"><a href="https://github.com/anshmehta/credit-card-validator-cra" target="_blank">GitHub Repo</a></span>
+          <span class="item-title">Online Auction System</span>
+          <span class="item-date">2025 – 2026</span>
         </div>
+        <div class="item-subtitle">HTML, CSS, JavaScript, PHP, MySQL &bull; Frontend Developer, DB Architect &amp; Project Lead</div>
         <ul class="bullet-list">
-          <li>Implemented the Luhn checksum validation algorithm with instant credit card network detection (Visa, Mastercard, Amex).</li>
-          <li>Ensured real-time input sanitization, error messaging, and edge-case handling.</li>
+          <li>Developed a responsive Online Auction System for buying and selling products with real-time bidding mechanics.</li>
+          <li>Led project coordination, database entity-relationship modeling, and responsive UI component development.</li>
+          <li>Implemented user authentication, product listings, bidding countdowns, and auction lifecycle management.</li>
         </ul>
       </div>
     </section>
 
-    <!-- Hackathons & Extracurriculars -->
+    <!-- Experience - Job Simulations -->
     <section>
-      <h2>Hackathons & Extracurriculars</h2>
+      <h2>Experience — Job Simulations</h2>
       <div class="item">
         <div class="item-header">
-          <span class="item-title">Magic Squares Hackathon Participant</span>
-          <span class="item-date"><a href="https://github.com/anshmehta/magic-squares-hackathon" target="_blank">GitHub Repo</a></span>
+          <span class="item-title">Deloitte — Data Analytics &amp; Technology Job Simulation (Forage)</span>
+          <span class="item-date">07/2026</span>
         </div>
         <ul class="bullet-list">
-          <li>Collaborated in an algorithmic hackathon to model mathematical magic squares and constraint optimization solvers.</li>
-          <li>Demonstrated strong problem-solving, rapid prototyping, and algorithmic thinking under tight time constraints.</li>
+          <li>Conducted forensic data analysis, and wrote/tested/debugged analytical code for a simulated client scenario.</li>
         </ul>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <span class="item-title">Walmart Global Tech — Advanced Software Engineering Job Simulation</span>
+          <span class="item-date">09/2026</span>
+        </div>
+        <ul class="bullet-list">
+          <li>Applied advanced data structures, high-level software architecture design, and normalized relational database design.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <span class="item-title">Tata Group — GenAI Powered Data Analytics Job Simulation</span>
+          <span class="item-date">09/2026</span>
+        </div>
+        <ul class="bullet-list">
+          <li>Performed exploratory data analysis, trained delinquency risk prediction indicators, and synthesized an AI-driven collections strategy report.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Certifications -->
+    <section>
+      <h2>Certifications</h2>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-title">AWS Cloud Practitioner Essentials</span>
+          <span class="item-date">Completed: 26/08/2025</span>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-title">AWS Academy Cloud Foundations (Score: 95.57%)</span>
+          <span class="item-date">Completed: 25/08/2025</span>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-title">Artificial Intelligence Fundamentals — IBM SkillsBuild</span>
+          <span class="item-date">Completed: 10/09/2025</span>
+        </div>
       </div>
     </section>
   </div>
