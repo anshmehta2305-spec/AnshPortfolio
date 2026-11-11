@@ -66,7 +66,7 @@ export const PERSONAL_INFO = {
     "AI-Powered Apps Builder",
   ],
   status: "Available for Full-Time Roles",
-  location: "Gujarat, India",
+  location: "India",
   email: "ansh.mehta2305@gmail.com",
   phone: "+91 9724585704",
   github: "https://github.com/anshmehta2305-spec",
@@ -522,7 +522,7 @@ Obsessed with sub-100ms response times, enterprise security, and clean engineeri
   • Phone:    +91 9724585704
   • LinkedIn: linkedin.com/in/ansh-mehta-b86528406
   • GitHub:   github.com/anshmehta2305-spec
-  • Location: Gujarat, India`,
+  • Location: India`,
   sudo: `[SECURITY NOTICE] Access granted: Ansh Mehta is ready for deployment to your engineering team.`,
 };
 
