@@ -54,11 +54,6 @@ export default function EducationCertSection() {
                   </div>
 
                   <div className="flex flex-wrap items-center gap-4 mt-3 pt-3 border-t border-line-primary text-xs text-txt-muted">
-                    {edu.grade && (
-                      <span className="text-crimson font-semibold">
-                        Grade: {edu.grade}
-                      </span>
-                    )}
                     <span className="flex items-center gap-1 text-txt-secondary">
                       <MapPin className="w-3 h-3 text-crimson" />
                       {edu.location}

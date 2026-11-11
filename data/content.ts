@@ -428,7 +428,6 @@ export const EDUCATION: EducationItem[] = [
     degree: "Diploma in Computer Engineering",
     location: "Dahod, India",
     periodOrYear: "Completed 2024",
-    grade: "CGPA: 6.57",
     details:
       "Graduated under Technological University (GTU) with practical focus on programming fundamentals, web technologies, and systems maintenance.",
   },
