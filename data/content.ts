@@ -73,7 +73,7 @@ export const PERSONAL_INFO = {
   githubUsername: "anshmehta2305-spec",
   linkedin: "https://www.linkedin.com/in/ansh-mehta-b86528406",
   portfolioDomain: "https://anshmehta.in",
-  cvDownloadPath: "/resume.pdf",
+  cvDownloadPath: "/cv.html",
   bio: `Final-year B.Tech Computer Science & Engineering student and full-stack developer with hands-on experience building and deploying production-style web applications using the MERN stack and Python/FastAPI. Strong foundation in data structures, algorithms and OOP, with practical skills in REST API development, database design (MySQL, MongoDB, PostgreSQL), authentication (JWT, 2FA), cloud deployment (AWS, Render, Vercel), and applying AI/ML to real-world problems. Seeking a Full-Stack Developer / Software Engineer role.`,
 };
 
