@@ -63,7 +63,7 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
         setCopied(true);
         setTimeout(() => setCopied(false), 2500);
       } else if (action === "download-cv") {
-        window.open(PERSONAL_INFO.cvDownloadPath, "_blank");
+        window.open(PERSONAL_INFO.cvDownloadPath, "_blank", "noopener,noreferrer");
       } else if (action === "toggle-theme") {
         const currentTheme = document.documentElement.getAttribute("data-theme") || "dark";
         const nextTheme = currentTheme === "dark" ? "light" : "dark";
@@ -76,6 +76,7 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
           document.documentElement.classList.add("light");
           document.documentElement.classList.remove("dark");
         }
+        window.dispatchEvent(new CustomEvent("theme-change", { detail: nextTheme }));
       } else if (action.startsWith("http")) {
         window.open(action, "_blank", "noopener,noreferrer");
       }

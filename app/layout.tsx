@@ -4,6 +4,9 @@ import { PERSONAL_INFO } from "@/data/content";
 
 export const metadata: Metadata = {
   metadataBase: new URL(PERSONAL_INFO.portfolioDomain),
+  alternates: {
+    canonical: PERSONAL_INFO.portfolioDomain,
+  },
   title: {
     default: `${PERSONAL_INFO.name} — Full-Stack Developer & Software Engineer`,
     template: `%s | ${PERSONAL_INFO.name}`,
@@ -72,8 +75,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#07090e" },
-    { media: "(prefers-color-scheme: light)", color: "#f8fafc" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
   ],
   width: "device-width",
   initialScale: 1,
@@ -85,7 +88,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="dark" data-theme="dark">
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className="dark"
+      data-theme="dark"
+    >
       <head>
         {/* Anti-flash theme script */}
         <script
@@ -133,27 +141,8 @@ export default function RootLayout({
             }),
           }}
         />
-        {/* Anti-flash inline script to restore theme before first paint */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              try {
-                var storedTheme = localStorage.getItem('ansh-theme');
-                if (storedTheme === 'light') {
-                  document.documentElement.setAttribute('data-theme', 'light');
-                  document.documentElement.classList.remove('dark');
-                } else {
-                  document.documentElement.setAttribute('data-theme', 'dark');
-                  document.documentElement.classList.add('dark');
-                }
-              } catch (e) {}
-            `,
-          }}
-        />
       </head>
-      <body
-        className="font-sans antialiased cad-grid selection:bg-brand-lime/30 selection:text-black"
-      >
+      <body className="font-sans antialiased relative">
         <div className="noise-overlay" aria-hidden="true" />
         {children}
       </body>

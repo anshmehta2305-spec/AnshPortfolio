@@ -25,6 +25,16 @@ export default function ThemeToggle() {
     const initialTheme = stored === "light" ? "light" : "dark";
     setTheme(initialTheme);
     applyTheme(initialTheme);
+
+    const handleThemeChange = (e: Event) => {
+      const customEvt = e as CustomEvent<"dark" | "light">;
+      if (customEvt.detail) {
+        setTheme(customEvt.detail);
+      }
+    };
+
+    window.addEventListener("theme-change", handleThemeChange);
+    return () => window.removeEventListener("theme-change", handleThemeChange);
   }, []);
 
   const toggleTheme = (e?: React.MouseEvent) => {

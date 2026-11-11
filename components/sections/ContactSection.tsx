@@ -219,11 +219,15 @@ export default function ContactSection() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs text-txt-muted block font-medium">
+                    <label htmlFor="contact-name" className="text-xs text-txt-muted block font-medium">
                       Your Name
                     </label>
                     <input
+                      id="contact-name"
                       type="text"
+                      maxLength={100}
+                      aria-required="true"
+                      aria-invalid={!!errors.name}
                       placeholder="e.g. Alex Miller"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -239,11 +243,15 @@ export default function ContactSection() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs text-txt-muted block font-medium">
+                    <label htmlFor="contact-email" className="text-xs text-txt-muted block font-medium">
                       Email Address
                     </label>
                     <input
+                      id="contact-email"
                       type="email"
+                      maxLength={120}
+                      aria-required="true"
+                      aria-invalid={!!errors.email}
                       placeholder="e.g. alex@company.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -260,11 +268,13 @@ export default function ContactSection() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs text-txt-muted block font-medium">
+                  <label htmlFor="contact-subject" className="text-xs text-txt-muted block font-medium">
                     Subject
                   </label>
                   <input
+                    id="contact-subject"
                     type="text"
+                    maxLength={150}
                     placeholder="e.g. Full-Stack Engineer Opportunity"
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
@@ -273,11 +283,15 @@ export default function ContactSection() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs text-txt-muted block font-medium">
+                  <label htmlFor="contact-message" className="text-xs text-txt-muted block font-medium">
                     Message
                   </label>
                   <textarea
+                    id="contact-message"
                     rows={4}
+                    maxLength={2000}
+                    aria-required="true"
+                    aria-invalid={!!errors.message}
                     placeholder="Tell me about the role, project, or collaboration..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
