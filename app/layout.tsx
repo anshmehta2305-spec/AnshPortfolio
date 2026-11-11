@@ -29,6 +29,12 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: PERSONAL_INFO.fullName, url: PERSONAL_INFO.portfolioDomain }],
   creator: PERSONAL_INFO.fullName,
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
+  manifest: "/manifest.json",
   openGraph: {
     type: "website",
     locale: "en_US",
