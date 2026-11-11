@@ -169,14 +169,20 @@ body {
 }
 
 /* =========================================================================
-   HERO PORTRAIT ADAPTIVE EDGE BLENDING
+   HERO PORTRAIT ADAPTIVE EDGE BLENDING (DARK MODE ONLY)
    ========================================================================= */
 
 .hero-portrait-fade {
-  background: linear-gradient(to top, var(--hero-fade-stop) 0%, transparent 28%),
-              linear-gradient(to right, var(--hero-fade-stop) 0%, transparent 12%),
-              linear-gradient(to left, var(--hero-fade-stop) 0%, transparent 12%);
-  transition: background 0.3s ease;
+  background: linear-gradient(to top, #0a0a0a 0%, transparent 28%),
+              linear-gradient(to right, #0a0a0a 0%, transparent 12%),
+              linear-gradient(to left, #0a0a0a 0%, transparent 12%);
+  transition: opacity 0.3s ease;
+}
+
+[data-theme="light"] .hero-portrait-fade,
+html.light .hero-portrait-fade {
+  display: none !important;
+  opacity: 0 !important;
 }
 
 /* Accessibility: respect prefers-reduced-motion */

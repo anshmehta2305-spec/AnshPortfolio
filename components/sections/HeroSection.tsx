@@ -109,24 +109,38 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Right Column: Hero Portrait Image with Adaptive Gradient Fades (5 cols) */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-end relative">
-            <div className="relative w-full max-w-[420px] aspect-[4/5] overflow-hidden rounded-lg shadow-theme">
+          {/* Right Column: Hero Portrait Image - Elevated Floating Card in Light Mode, Studio Blend in Dark Mode */}
+          <div className="lg:col-span-5 flex justify-center lg:justify-end relative py-2">
+            <div className="relative w-full max-w-[390px] sm:max-w-[420px]">
               
-              {/* The Hero Image */}
-              <Image
-                src="/ansh-hero.jpg"
-                alt="Ansh Mehta Portrait"
-                fill
-                priority
-                className="object-cover object-top select-none transition-transform duration-700 hover:scale-[1.02]"
-                sizes="(max-width: 768px) 100vw, 420px"
-              />
+              {/* Floating Card Container */}
+              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl sm:rounded-3xl border-2 border-crimson/25 dark:border-transparent bg-bg-card shadow-[0_20px_50px_rgba(0,0,0,0.18)] dark:shadow-none transition-all duration-300 group">
+                
+                {/* The Hero Image: 100% Crisp & Sharp (Zero muddy fade in Light Mode) */}
+                <Image
+                  src="/ansh-hero.jpg"
+                  alt="Ansh Mehta Portrait"
+                  fill
+                  priority
+                  className="object-cover object-top select-none transition-transform duration-700 group-hover:scale-[1.02]"
+                  sizes="(max-width: 768px) 100vw, 420px"
+                />
 
-              {/* Edge Gradient Fades: Adapts to --hero-fade-stop (#0a0a0a in dark, #ffffff in light) */}
-              <div
-                className="absolute inset-0 pointer-events-none hero-portrait-fade"
-              />
+                {/* Dark Mode ONLY Edge Fade: Completely inactive in Light Mode, seamless in Dark Mode */}
+                <div
+                  className="absolute inset-0 pointer-events-none opacity-0 dark:opacity-100 transition-opacity duration-300 hero-portrait-fade"
+                  aria-hidden="true"
+                />
+              </div>
+
+              {/* Decorative Subtle Accent Tag under Card in Light Mode */}
+              <div className="hidden sm:flex items-center justify-between mt-3 px-2 text-[11px] font-mono text-txt-muted opacity-80 dark:hidden">
+                <span>PORTRAIT // 2026</span>
+                <span className="flex items-center gap-1.5 text-crimson font-medium">
+                  <span className="w-1.5 h-1.5 rounded-full bg-crimson" />
+                  Full-Stack Studio
+                </span>
+              </div>
             </div>
           </div>
 
