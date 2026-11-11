@@ -65,9 +65,10 @@ export default function MagneticCursor() {
 
   return (
     <>
-      {/* Outer follow box */}
+      {/* Outer follow circle - z-[999999] so it is never covered by any modal, dialog or command palette */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-50 border border-red-500/50 rounded-full"
+        data-custom-cursor="true"
+        className="fixed top-0 left-0 pointer-events-none z-[999999] border border-red-500/50 rounded-full"
         style={{
           x: smoothX,
           y: smoothY,
@@ -81,7 +82,8 @@ export default function MagneticCursor() {
       />
       {/* Center point */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-50 w-1.5 h-1.5 bg-[#e50914] rounded-full shadow-[0_0_6px_rgba(229,9,20,0.8)]"
+        data-custom-cursor="true"
+        className="fixed top-0 left-0 pointer-events-none z-[999999] w-1.5 h-1.5 bg-[#e50914] rounded-full shadow-[0_0_6px_rgba(229,9,20,0.8)]"
         style={{
           x: cursorX,
           y: cursorY,

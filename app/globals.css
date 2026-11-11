@@ -40,13 +40,18 @@
   box-sizing: border-box;
 }
 
-/* Hide default cursor on desktop hover-capable screens */
+/* Hide default cursor on desktop hover-capable screens everywhere including modals and dialogs */
 @media (hover: hover) and (pointer: fine) {
   *,
   *::before,
   *::after,
   html,
   body,
+  dialog,
+  [role="dialog"],
+  [role="combobox"],
+  [role="listbox"],
+  .modal,
   a,
   button,
   input,
@@ -55,6 +60,13 @@
   [role="button"] {
     cursor: none !important;
   }
+}
+
+/* Custom Cursor absolute top layer rule (never blocked by modals, popups or dialogs) */
+[data-custom-cursor],
+.custom-cursor {
+  z-index: 999999 !important;
+  pointer-events: none !important;
 }
 
 html {
