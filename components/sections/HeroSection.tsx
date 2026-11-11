@@ -1,30 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import HeroCanvas from "@/components/3d/HeroCanvas";
-import { PERSONAL_INFO, KEY_METRICS } from "@/data/content";
-import {
-  ArrowDown,
-  ArrowUpRight,
-  FileDown,
-  Github,
-  Linkedin,
-  Mail,
-  Cpu,
-  Layers,
-  Terminal,
-} from "lucide-react";
+import React from "react";
+import Image from "next/image";
+import { PERSONAL_INFO } from "@/data/content";
+import { ArrowRight, FileDown, Github, Linkedin, Mail, MapPin } from "lucide-react";
 
 export default function HeroSection() {
-  const [roleIndex, setRoleIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setRoleIndex((prev) => (prev + 1) % PERSONAL_INFO.subtitles.length);
-    }, 2600);
-    return () => clearInterval(timer);
-  }, []);
-
   const scrollToProjects = (e: React.MouseEvent) => {
     e.preventDefault();
     const el = document.getElementById("projects");
@@ -34,141 +15,128 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-[92vh] flex items-center justify-center pt-32 pb-20 cad-grid overflow-hidden border-b border-border"
+      className="relative min-h-[92vh] flex items-center justify-center pt-28 pb-16 overflow-hidden bg-[#0a0a0a]"
     >
-      {/* 3D CAD Blueprint Wireframe Layer */}
-      <HeroCanvas />
+      {/* Subtle crimson studio atmospheric glow matching the portrait */}
+      <div
+        className="absolute top-1/4 right-10 lg:right-1/4 w-[480px] h-[480px] rounded-full pointer-events-none opacity-20 blur-[140px]"
+        style={{ background: "radial-gradient(circle, #e50914 0%, transparent 70%)" }}
+        aria-hidden="true"
+      />
 
-      {/* CAD Viewport Corner Crosshairs */}
-      <div className="absolute top-28 left-6 font-mono-hud text-xs text-brand-lime/60 hidden sm:block">
-        + [CAD_VIEWPORT_X0.00]
-      </div>
-      <div className="absolute top-28 right-6 font-mono-hud text-xs text-brand-lime/60 hidden sm:block">
-        [SYS_CALIBRATED_100%] +
-      </div>
-      <div className="absolute bottom-6 left-6 font-mono-hud text-xs text-text-muted/60 hidden sm:block">
-        + [PROD_LEVEL: HIGH]
-      </div>
-      <div className="absolute bottom-6 right-6 font-mono-hud text-xs text-text-muted/60 hidden sm:block">
-        [STACK: MERN/NEXT14/FASTAPI] +
-      </div>
-
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
-        {/* Hardware Status Ribbon */}
-        <div className="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-sm bg-[#11141a] border border-brand-lime/40 text-xs font-mono-hud mb-6 shadow-tactile">
-          <span className="w-2 h-2 rounded-none bg-brand-lime animate-pulse inline-block" />
-          <span className="text-brand-lime font-bold uppercase tracking-wider">
-            STATUS // RECRUITMENT READY
-          </span>
-          <span className="text-white/20">|</span>
-          <span className="text-text-muted">GUJARAT, INDIA</span>
-        </div>
-
-        {/* Massive Industrial Headline */}
-        <h1 className="text-4xl sm:text-6xl md:text-8xl font-display font-extrabold tracking-tighter text-foreground uppercase leading-[0.95] max-w-5xl">
-          Ansh Mehta
-          <span className="block text-2xl sm:text-4xl md:text-5xl font-mono-hud font-bold text-brand-lime mt-3">
-            // Full-Stack Engineer
-          </span>
-        </h1>
-
-        {/* Dynamic Telemetry Role Banner */}
-        <div className="mt-5 inline-flex items-center gap-2 px-4 py-1.5 bg-[#161a22] border border-border text-xs sm:text-sm font-mono-hud text-text-muted">
-          <span className="text-brand-lime font-bold">&gt;&gt;</span>
-          <span className="text-foreground uppercase font-semibold">
-            SPECIALIZATION:
-          </span>
-          <span
-            key={roleIndex}
-            className="text-brand-lime font-bold animate-in fade-in duration-200"
-          >
-            {PERSONAL_INFO.subtitles[roleIndex]}
-          </span>
-        </div>
-
-        {/* Technical Philosophy Statement */}
-        <p className="mt-6 text-sm sm:text-base text-text-muted max-w-2xl leading-relaxed font-sans">
-          Final-year B.Tech CSE student building production-style web architectures with the MERN stack, Next.js 14, and Python/FastAPI.
-          Trained on sub-100ms response latencies, cryptographic data integrity (AES-256), and rigorous automated QA testing.
-        </p>
-
-        {/* Tactile Action Buttons */}
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-          <a
-            href="#projects"
-            onClick={scrollToProjects}
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-sm font-mono-hud font-extrabold text-xs uppercase bg-brand-lime text-black hover:bg-white transition-all shadow-tactile"
-          >
-            <Layers className="w-4 h-4" />
-            <span>Inspect System Architectures &rarr;</span>
-          </a>
-
-          <a
-            href={PERSONAL_INFO.cvDownloadPath}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-sm font-mono-hud font-bold text-xs uppercase bg-[#11141a] border border-border hover:border-brand-lime/80 text-foreground transition-all hover:bg-[#1a1f29]"
-          >
-            <FileDown className="w-4 h-4 text-brand-lime" />
-            <span>Download Dossier (CV.PDF)</span>
-          </a>
-        </div>
-
-        {/* Live Metric Bento strip */}
-        <div className="mt-12 w-full max-w-4xl grid grid-cols-2 sm:grid-cols-4 gap-3 text-left">
-          {KEY_METRICS.map((metric, idx) => (
-            <div
-              key={idx}
-              className="p-3.5 rounded-sm bg-[#11141a]/90 border border-border hover:border-brand-lime/50 transition-colors"
-            >
-              <div className="text-[10px] font-mono-hud text-brand-lime font-bold">
-                METRIC.0{idx + 1}
-              </div>
-              <div className="text-2xl sm:text-3xl font-display font-extrabold text-foreground mt-0.5">
-                {metric.value}
-              </div>
-              <div className="text-xs font-semibold text-foreground/90 uppercase tracking-tight">
-                {metric.label}
-              </div>
-              <div className="text-[10px] font-mono-hud text-text-muted mt-0.5 truncate">
-                {metric.detail}
-              </div>
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          
+          {/* Left Column: Text & Strategic Negative Space (7 cols) */}
+          <div className="lg:col-span-7 space-y-8 text-left">
+            {/* Status Pill */}
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs text-neutral-300">
+              <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
+              <span className="font-medium tracking-wide">Available for Full-Stack &amp; Software Roles</span>
+              <span className="text-neutral-600">|</span>
+              <span className="text-neutral-400 flex items-center gap-1 text-[11px]">
+                <MapPin className="w-3 h-3 text-red-500" />
+                {PERSONAL_INFO.location}
+              </span>
             </div>
-          ))}
-        </div>
 
-        {/* Coordinates Quick Bar */}
-        <div className="mt-8 flex items-center gap-6 text-xs font-mono-hud text-text-muted">
-          <a
-            href={PERSONAL_INFO.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1.5 hover:text-brand-lime transition-colors"
-          >
-            <Github className="w-3.5 h-3.5" />
-            <span>github.com/anshmehta2305-spec</span>
-          </a>
-          <span>//</span>
-          <a
-            href={PERSONAL_INFO.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1.5 hover:text-brand-lime transition-colors"
-          >
-            <Linkedin className="w-3.5 h-3.5" />
-            <span>linkedin/ansh-mehta</span>
-          </a>
-        </div>
+            {/* Main Headline */}
+            <div className="space-y-3">
+              <h1 className="text-4xl sm:text-6xl md:text-7xl font-sans font-extrabold tracking-tight text-white leading-[1.05]">
+                Ansh Mehta
+              </h1>
+              <p className="text-xl sm:text-2xl font-light text-neutral-400 tracking-tight">
+                Full-Stack Developer &amp; Software Engineer
+              </p>
+            </div>
 
-        {/* Scroll indicator */}
-        <div className="mt-10">
-          <a
-            href="#about"
-            aria-label="Scroll to about section"
-            className="p-2 border border-border hover:border-brand-lime text-text-muted hover:text-brand-lime transition-colors inline-block"
-          >
-            <ArrowDown className="w-4 h-4" />
-          </a>
+            {/* Bio Paragraph */}
+            <p className="text-base sm:text-lg text-[#a0a0a0] leading-relaxed max-w-xl font-normal">
+              Final-year B.Tech CSE student specializing in high-performance web systems using the MERN stack, Next.js 14, and Python/FastAPI. Passionate about clean architecture, sub-100ms APIs, and applied AI.
+            </p>
+
+            {/* Sleek Minimalist Buttons */}
+            <div className="flex flex-wrap items-center gap-4 pt-2">
+              <a
+                href="#projects"
+                onClick={scrollToProjects}
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-md text-sm font-medium bg-[#e50914] text-white hover:bg-red-600 transition-all duration-200 shadow-lg shadow-red-950/30"
+              >
+                <span>View Projects</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
+
+              <a
+                href={PERSONAL_INFO.cvDownloadPath}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-md text-sm font-medium bg-transparent border border-white/20 text-white hover:border-white/40 hover:bg-white/[0.04] transition-all duration-200"
+              >
+                <FileDown className="w-4 h-4 text-neutral-400" />
+                <span>Curriculum Vitae</span>
+              </a>
+            </div>
+
+            {/* Direct Minimalist Handles */}
+            <div className="pt-4 flex items-center gap-6 text-xs text-[#a0a0a0]">
+              <a
+                href={PERSONAL_INFO.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 hover:text-white transition-colors"
+              >
+                <Github className="w-3.5 h-3.5" />
+                <span>GitHub</span>
+              </a>
+              <span className="text-neutral-700">&bull;</span>
+              <a
+                href={PERSONAL_INFO.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 hover:text-white transition-colors"
+              >
+                <Linkedin className="w-3.5 h-3.5" />
+                <span>LinkedIn</span>
+              </a>
+              <span className="text-neutral-700">&bull;</span>
+              <a
+                href={`mailto:${PERSONAL_INFO.email}`}
+                className="flex items-center gap-1.5 hover:text-white transition-colors"
+              >
+                <Mail className="w-3.5 h-3.5" />
+                <span>Email</span>
+              </a>
+            </div>
+          </div>
+
+          {/* Right Column: Hero Portrait Image with Seamless Gradient Fades (5 cols) */}
+          <div className="lg:col-span-5 flex justify-center lg:justify-end relative">
+            <div className="relative w-full max-w-[420px] aspect-[4/5] overflow-hidden">
+              
+              {/* The Hero Image */}
+              <Image
+                src="/ansh-hero.jpg"
+                alt="Ansh Mehta Portrait"
+                fill
+                priority
+                className="object-cover object-top select-none transition-transform duration-700 hover:scale-[1.02]"
+                sizes="(max-width: 768px) 100vw, 420px"
+              />
+
+              {/* Edge Gradient Fades: Bottom, Left, and Right so it blends directly into #0a0a0a */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: `
+                    linear-gradient(to top, #0a0a0a 0%, transparent 28%),
+                    linear-gradient(to right, #0a0a0a 0%, transparent 12%),
+                    linear-gradient(to left, #0a0a0a 0%, transparent 12%)
+                  `,
+                }}
+              />
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

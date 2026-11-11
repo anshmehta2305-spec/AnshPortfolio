@@ -2,63 +2,71 @@
 
 import React from "react";
 import { EDUCATION, CERTIFICATIONS } from "@/data/content";
-import { GraduationCap, Award, CheckCircle, ShieldCheck } from "lucide-react";
+import { GraduationCap, Award, CheckCircle2, ShieldCheck, MapPin, Calendar } from "lucide-react";
 
 export default function EducationCertSection() {
   return (
-    <section id="education" className="py-24 relative border-b border-border bg-[#0a0c10]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="education" className="py-24 relative border-b border-white/[0.06] bg-[#0a0a0a]">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        
+        {/* Section Header */}
+        <div className="mb-14 pb-4 border-b border-white/[0.06]">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="w-2 h-2 rounded-full bg-[#e50914]" />
+            <span className="text-xs uppercase font-medium tracking-widest text-[#a0a0a0]">
+              Academic &amp; Professional Credentials
+            </span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            Education &amp; Certifications
+          </h2>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
           {/* Education Column */}
           <div className="space-y-6">
-            <div className="pb-3 border-b border-border">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="w-2.5 h-2.5 bg-brand-lime inline-block" />
-                <span className="text-xs font-mono-hud text-brand-lime uppercase font-bold tracking-widest">
-                  SECTION [05] // ACADEMIC RECORD
-                </span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-display font-extrabold uppercase text-foreground">
+            <div className="flex items-center gap-2.5 pb-3 border-b border-white/[0.06]">
+              <GraduationCap className="w-5 h-5 text-[#e50914]" />
+              <h3 className="text-xl font-bold text-white tracking-tight">
                 Formal Education
-              </h2>
+              </h3>
             </div>
 
             <div className="space-y-4">
               {EDUCATION.map((edu, idx) => (
                 <div
                   key={idx}
-                  className="p-5 sm:p-6 rounded-sm bg-[#11141a] border border-border hover:border-brand-lime/40 transition-colors shadow-cad"
+                  className="p-6 rounded-lg bg-[#121212] border border-white/[0.06] hover:border-white/20 transition-colors"
                 >
-                  <div className="flex items-start justify-between gap-2 mb-2">
+                  <div className="flex items-start justify-between gap-3 mb-2">
                     <div>
-                      <div className="text-[10px] font-mono-hud text-brand-lime font-bold">
-                        INSTITUTION // 0{idx + 1}
-                      </div>
-                      <h3 className="text-lg font-display font-extrabold uppercase text-foreground">
+                      <h4 className="text-lg font-bold text-white">
                         {edu.institution}
-                      </h3>
+                      </h4>
+                      <div className="text-sm text-neutral-300 mt-1 font-medium">
+                        {edu.degree}
+                      </div>
                     </div>
-                    <span className="text-xs font-mono-hud font-bold px-2 py-0.5 bg-black/50 border border-border text-brand-lime">
+                    <span className="text-xs font-medium px-2.5 py-1 rounded bg-white/[0.05] border border-white/[0.08] text-neutral-300 flex-shrink-0 flex items-center gap-1">
+                      <Calendar className="w-3 h-3 text-[#e50914]" />
                       {edu.periodOrYear}
                     </span>
                   </div>
 
-                  <div className="text-xs font-semibold text-foreground/90 font-mono-hud">
-                    {edu.degree}
-                  </div>
-
-                  {edu.grade && (
-                    <div className="mt-1 text-xs font-mono-hud font-bold text-brand-lime">
-                      RECORD: {edu.grade}
-                    </div>
-                  )}
-
-                  <div className="text-[11px] font-mono-hud text-text-muted mt-1">
-                    LOCATION: {edu.location}
+                  <div className="flex flex-wrap items-center gap-4 mt-3 pt-3 border-t border-white/[0.06] text-xs text-[#a0a0a0]">
+                    {edu.grade && (
+                      <span className="text-[#e50914] font-semibold">
+                        Grade: {edu.grade}
+                      </span>
+                    )}
+                    <span className="flex items-center gap-1">
+                      <MapPin className="w-3 h-3" />
+                      {edu.location}
+                    </span>
                   </div>
 
                   {edu.details && (
-                    <p className="mt-3 text-xs text-text-muted leading-relaxed border-t border-border/60 pt-2.5">
+                    <p className="mt-3 text-xs text-[#a0a0a0] leading-relaxed">
                       {edu.details}
                     </p>
                   )}
@@ -69,57 +77,56 @@ export default function EducationCertSection() {
 
           {/* Certifications Column */}
           <div className="space-y-6">
-            <div className="pb-3 border-b border-border">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="w-2.5 h-2.5 bg-brand-orange inline-block" />
-                <span className="text-xs font-mono-hud text-brand-orange uppercase font-bold tracking-widest">
-                  SECTION [06] // INDUSTRY CREDENTIALS
-                </span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-display font-extrabold uppercase text-foreground">
-                Cloud &amp; AI Certifications
-              </h2>
+            <div className="flex items-center gap-2.5 pb-3 border-b border-white/[0.06]">
+              <Award className="w-5 h-5 text-[#e50914]" />
+              <h3 className="text-xl font-bold text-white tracking-tight">
+                Cloud &amp; Industry Certifications
+              </h3>
             </div>
 
             <div className="space-y-4">
               {CERTIFICATIONS.map((cert, idx) => (
                 <div
                   key={idx}
-                  className="p-5 sm:p-6 rounded-sm bg-[#11141a] border border-border hover:border-brand-orange/40 transition-colors shadow-cad"
+                  className="p-6 rounded-lg bg-[#121212] border border-white/[0.06] hover:border-white/20 transition-colors"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 bg-brand-lime inline-block" />
-                        <h3 className="text-base font-display font-extrabold uppercase text-foreground">
+                        <CheckCircle2 className="w-4 h-4 text-[#e50914] flex-shrink-0" />
+                        <h4 className="text-base font-semibold text-white">
                           {cert.title}
-                        </h3>
+                        </h4>
                       </div>
-                      <div className="text-xs font-mono-hud text-text-muted mt-1 pl-3.5">
-                        ISSUER: <strong className="text-foreground">{cert.issuer}</strong>
+                      <div className="text-xs text-[#a0a0a0] mt-1.5 pl-6">
+                        Issuer: <strong className="text-neutral-200">{cert.issuer}</strong>
                       </div>
                       {cert.score && (
-                        <div className="text-xs font-mono-hud text-brand-lime font-bold pl-3.5 mt-1">
-                          SCORE BENCHMARK: {cert.score}
+                        <div className="text-xs text-[#e50914] font-medium pl-6 mt-1">
+                          Score: {cert.score}
                         </div>
                       )}
                     </div>
-                    <span className="text-[11px] font-mono-hud text-text-muted px-2 py-0.5 bg-[#161a22] border border-border flex-shrink-0">
+                    <span className="text-xs text-neutral-400 px-2.5 py-1 rounded bg-white/[0.05] border border-white/[0.08] flex-shrink-0">
                       {cert.completionDate}
                     </span>
                   </div>
                 </div>
               ))}
 
-              <div className="p-4 rounded-sm bg-[#161a22] border border-brand-lime/30 text-xs font-mono-hud text-text-muted">
-                <span className="text-brand-lime font-bold block mb-1">
-                  // CLOUD &amp; SYSTEMS READINESS AUDIT:
-                </span>
-                Comprehensive training across Amazon Web Services infrastructure (VPC, EC2, IAM, S3, networking, security controls) and IBM cognitive foundations.
+              <div className="p-4 rounded-lg bg-[#121212] border border-red-500/20 text-xs text-[#a0a0a0] flex items-start gap-3">
+                <ShieldCheck className="w-5 h-5 text-[#e50914] flex-shrink-0 mt-0.5" />
+                <div>
+                  <span className="text-white font-semibold block mb-0.5">
+                    Cloud &amp; Systems Readiness
+                  </span>
+                  Comprehensive coursework across Amazon Web Services infrastructure (VPC, EC2, IAM, S3, networking, security controls) and IBM cognitive foundations.
+                </div>
               </div>
             </div>
           </div>
         </div>
+
       </div>
     </section>
   );

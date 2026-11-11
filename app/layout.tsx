@@ -87,6 +87,46 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="dark">
       <head>
+        {/* JSON-LD Structured Data for Search Engine Verification */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: PERSONAL_INFO.name,
+              additionalName: "Minesh",
+              jobTitle: "Full-Stack Developer & Software Engineer",
+              url: PERSONAL_INFO.portfolioDomain,
+              email: PERSONAL_INFO.email,
+              telephone: PERSONAL_INFO.phone,
+              alumniOf: {
+                "@type": "EducationalOrganization",
+                name: "Parul University",
+              },
+              sameAs: [
+                PERSONAL_INFO.github,
+                PERSONAL_INFO.linkedin,
+                PERSONAL_INFO.portfolioDomain,
+              ],
+              knowsAbout: [
+                "Full-Stack Web Development",
+                "Next.js 14",
+                "React 18",
+                "TypeScript",
+                "Node.js",
+                "FastAPI",
+                "Python",
+                "PostgreSQL",
+                "Prisma ORM",
+                "MongoDB",
+                "Amazon Web Services (AWS)",
+                "Three.js",
+                "REST APIs",
+              ],
+            }),
+          }}
+        />
         {/* Anti-flash inline script to restore theme before first paint */}
         <script
           dangerouslySetInnerHTML={{

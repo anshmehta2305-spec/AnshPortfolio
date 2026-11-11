@@ -41,14 +41,14 @@ export default function ThemeToggle() {
     <button
       onClick={toggleTheme}
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-      className="relative p-2 rounded-lg border border-border bg-surface/60 hover:bg-surface-card-hover text-foreground/80 hover:text-foreground transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent-cyan/50 hover:border-accent-cyan/40"
+      className="relative p-2 rounded-lg border border-white/10 bg-[#161616] hover:bg-white/[0.06] text-neutral-300 hover:text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-600/50 hover:border-white/20"
       title={`Toggle theme (current: ${theme})`}
     >
       <div className="relative w-5 h-5 flex items-center justify-center">
         {theme === "dark" ? (
-          <Sun className="w-4 h-4 text-accent-cyan animate-in fade-in zoom-in duration-200" />
+          <Sun className="w-4 h-4 text-[#e50914] animate-in fade-in zoom-in duration-200" />
         ) : (
-          <Moon className="w-4 h-4 text-accent-indigo animate-in fade-in zoom-in duration-200" />
+          <Moon className="w-4 h-4 text-[#e50914] animate-in fade-in zoom-in duration-200" />
         )}
       </div>
     </button>

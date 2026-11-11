@@ -18,120 +18,132 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative border-t border-border bg-[#07080a] text-xs font-mono-hud pt-14 pb-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 border-b border-border/80">
+    <footer className="relative border-t border-white/[0.06] bg-[#0a0a0a] text-xs pt-16 pb-12">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-white/[0.06]">
           {/* Identity */}
           <div className="md:col-span-2 space-y-3">
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 bg-brand-lime inline-block" />
-              <span className="font-display font-extrabold text-base uppercase text-foreground">
-                Ansh Mehta // Full-Stack Engineer
+              <span className="w-2.5 h-2.5 rounded-full bg-[#e50914] inline-block" />
+              <span className="font-extrabold text-base text-white">
+                Ansh Mehta
               </span>
+              <span className="text-neutral-500">|</span>
+              <span className="text-neutral-400 font-normal">Full-Stack Developer</span>
             </div>
-            <p className="text-text-muted max-w-md leading-relaxed font-sans">
+            <p className="text-[#a0a0a0] max-w-md leading-relaxed font-normal text-sm">
               B.Tech Computer Science &amp; Engineering final year. Specializing in high-performance web systems, MERN stack, Next.js 14, and Python/FastAPI.
             </p>
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-[#11141a] border border-brand-lime/40 text-brand-lime text-[10px]">
-              <span className="w-1.5 h-1.5 bg-brand-lime animate-pulse inline-block" />
-              <span>STATUS: DISPATCH_READY</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[#a0a0a0] text-[11px]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#e50914] animate-pulse inline-block" />
+              <span>Available for Full-Stack &amp; Software Roles</span>
             </div>
           </div>
 
           {/* Quick Routing */}
-          <div className="space-y-2">
-            <div className="text-[10px] text-brand-lime font-bold uppercase">
-              // TELEMETRY ROUTER
+          <div className="space-y-3">
+            <div className="text-xs text-white font-semibold uppercase tracking-wider">
+              Navigation
             </div>
-            <ul className="space-y-1.5 text-text-muted">
+            <ul className="space-y-2 text-[#a0a0a0]">
               <li>
-                <a href="#about" className="hover:text-brand-lime transition-colors">
-                  [01] ABOUT DOSSIER
+                <a href="#about" className="hover:text-white transition-colors">
+                  About
                 </a>
               </li>
               <li>
-                <a href="#projects" className="hover:text-brand-lime transition-colors">
-                  [02] PRODUCTION SYSTEMS
+                <a href="#projects" className="hover:text-white transition-colors">
+                  Featured Projects
                 </a>
               </li>
               <li>
-                <a href="#skills" className="hover:text-brand-lime transition-colors">
-                  [03] TECH MATRIX
+                <a href="#skills" className="hover:text-white transition-colors">
+                  Technical Stack
                 </a>
               </li>
               <li>
-                <a href="#experience" className="hover:text-brand-lime transition-colors">
-                  [04] JOB SIMULATIONS
+                <a href="#experience" className="hover:text-white transition-colors">
+                  Experience
                 </a>
               </li>
               <li>
-                <a href="#education" className="hover:text-brand-lime transition-colors">
-                  [05] EDUCATION &amp; CERTS
+                <a href="#education" className="hover:text-white transition-colors">
+                  Education &amp; Certifications
                 </a>
               </li>
             </ul>
           </div>
 
           {/* Direct Comms */}
-          <div className="space-y-2">
-            <div className="text-[10px] text-brand-lime font-bold uppercase">
-              // DIRECT CHANNELS
+          <div className="space-y-3">
+            <div className="text-xs text-white font-semibold uppercase tracking-wider">
+              Connect
             </div>
             <button
               onClick={copyEmail}
-              className="w-full text-left p-2.5 rounded-sm border border-border bg-[#11141a] hover:border-brand-lime text-text-muted hover:text-foreground transition-all flex items-center justify-between"
+              className="w-full text-left p-3 rounded-md border border-white/[0.08] bg-[#121212] hover:border-white/20 text-[#a0a0a0] hover:text-white transition-all flex items-center justify-between"
               title="Click to copy email"
             >
               <span className="truncate">{PERSONAL_INFO.email}</span>
               {copied ? (
-                <span className="text-brand-lime font-bold">[COPIED]</span>
+                <span className="text-red-400 font-medium text-[11px] flex items-center gap-1">
+                  <Check className="w-3 h-3" /> Copied
+                </span>
               ) : (
-                <span className="text-text-muted">[COPY]</span>
+                <span className="text-neutral-500 text-[11px] flex items-center gap-1">
+                  <Copy className="w-3 h-3" /> Copy
+                </span>
               )}
             </button>
 
-            <div className="flex items-center gap-2 pt-1">
+            <div className="flex items-center gap-3 pt-1">
               <a
                 href={PERSONAL_INFO.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 border border-border bg-[#11141a] text-text-muted hover:text-brand-lime hover:border-brand-lime transition-colors"
+                className="p-2.5 rounded-md border border-white/[0.08] bg-[#121212] text-[#a0a0a0] hover:text-white hover:border-white/20 transition-colors"
                 aria-label="GitHub"
               >
-                <Github className="w-3.5 h-3.5" />
+                <Github className="w-4 h-4" />
               </a>
               <a
                 href={PERSONAL_INFO.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 border border-border bg-[#11141a] text-text-muted hover:text-brand-lime hover:border-brand-lime transition-colors"
+                className="p-2.5 rounded-md border border-white/[0.08] bg-[#121212] text-[#a0a0a0] hover:text-[#e50914] hover:border-white/20 transition-colors"
                 aria-label="LinkedIn"
               >
-                <Linkedin className="w-3.5 h-3.5" />
+                <Linkedin className="w-4 h-4" />
               </a>
               <a
                 href={`mailto:${PERSONAL_INFO.email}`}
-                className="p-2 border border-border bg-[#11141a] text-text-muted hover:text-brand-lime hover:border-brand-lime transition-colors"
+                className="p-2.5 rounded-md border border-white/[0.08] bg-[#121212] text-[#a0a0a0] hover:text-white hover:border-white/20 transition-colors"
                 aria-label="Email"
               >
-                <Mail className="w-3.5 h-3.5" />
+                <Mail className="w-4 h-4" />
               </a>
             </div>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[10px] text-text-muted">
+        {/* Bottom Bar */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500">
           <div>
-            &copy; {new Date().getFullYear()} ANSH MEHTA. INDUSTRIAL SWISS ARCHITECTURE.
+            &copy; {new Date().getFullYear()} Ansh Mehta. Built with Next.js 14, TypeScript &amp; Tailwind CSS.
           </div>
-          <button
-            onClick={scrollToTop}
-            className="flex items-center gap-1.5 p-1 px-2 border border-border bg-[#11141a] text-text-muted hover:text-brand-lime hover:border-brand-lime transition-colors"
-          >
-            <span>TOP OF DOSSIER</span>
-            <ArrowUp className="w-3 h-3" />
-          </button>
+
+          <div className="flex items-center gap-6">
+            <span className="text-neutral-400">
+              {PERSONAL_INFO.location}
+            </span>
+            <button
+              onClick={scrollToTop}
+              className="flex items-center gap-1 text-[#a0a0a0] hover:text-white transition-colors"
+            >
+              <span>Back to Top</span>
+              <ArrowUp className="w-3.5 h-3.5" />
+            </button>
+          </div>
         </div>
       </div>
     </footer>

@@ -28,3 +28,4 @@ jobs:
 
       - name: Run Next.js Production Build
         run: npm run build
+

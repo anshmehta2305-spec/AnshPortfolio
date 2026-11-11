@@ -19,7 +19,6 @@ import {
   Smartphone,
   GitBranch,
   ArrowUpRight,
-  Sparkles,
 } from "lucide-react";
 
 interface ServiceItem {
@@ -152,13 +151,11 @@ interface MarqueeRowProps {
 
 function MarqueeRow({ items, direction, speed = 32 }: MarqueeRowProps) {
   const [isPaused, setIsPaused] = useState(false);
-
-  // Duplicate items array 3 times for a completely seamless infinite loop
   const duplicatedItems = [...items, ...items, ...items];
 
   return (
     <div
-      className="relative w-full overflow-hidden py-1"
+      className="relative w-full overflow-hidden py-1.5"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -181,31 +178,26 @@ function MarqueeRow({ items, direction, speed = 32 }: MarqueeRowProps) {
           return (
             <div
               key={`${service.id}-${index}`}
-              className="w-72 sm:w-80 p-4 rounded-sm bg-[#11141a] border border-border hover:border-brand-lime transition-all duration-200 group cursor-default select-none flex-shrink-0 shadow-cad hover:shadow-[0_8px_24px_rgba(212,255,0,0.15)] flex flex-col justify-between"
+              className="w-72 sm:w-80 p-5 rounded-lg bg-[#121212] border border-white/[0.06] hover:border-red-600/50 transition-all duration-200 group cursor-default select-none flex-shrink-0 flex flex-col justify-between"
             >
               <div>
-                {/* Card Top Pill Row */}
                 <div className="flex items-center justify-between mb-3">
-                  <div className="w-8 h-8 rounded-sm bg-[#161a22] border border-border group-hover:border-brand-lime/80 flex items-center justify-center text-brand-lime transition-colors">
+                  <div className="w-8 h-8 rounded-md bg-white/[0.04] border border-white/[0.06] group-hover:border-red-600/40 flex items-center justify-center text-white group-hover:text-red-500 transition-colors">
                     <Icon className="w-4 h-4" />
                   </div>
-                  <span className="text-[10px] font-mono-hud text-text-muted uppercase">
-                    [{service.category}]
+                  <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-wider">
+                    {service.category}
                   </span>
                 </div>
 
-                {/* Service Title */}
-                <h4 className="text-sm font-display font-extrabold text-foreground group-hover:text-brand-lime transition-colors leading-snug">
+                <h4 className="text-sm font-sans font-semibold text-white group-hover:text-red-500 transition-colors leading-snug">
                   {service.title}
                 </h4>
               </div>
 
-              {/* Bottom Tag & Micro Arrow */}
-              <div className="mt-4 pt-3 border-t border-border/60 flex items-center justify-between text-[11px] font-mono-hud text-text-muted">
-                <span className="text-brand-lime font-semibold">
-                  {service.tag}
-                </span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-text-muted group-hover:text-brand-lime group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              <div className="mt-4 pt-3 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-[#a0a0a0]">
+                <span>{service.tag}</span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-neutral-500 group-hover:text-red-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </div>
             </div>
           );
@@ -217,49 +209,37 @@ function MarqueeRow({ items, direction, speed = 32 }: MarqueeRowProps) {
 
 export default function ServicesMarqueeSection() {
   return (
-    <section id="services" className="py-24 relative border-b border-border bg-[#090a0d] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-        {/* Editorial Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-border">
+    <section id="services" className="py-28 relative border-t border-white/[0.06] bg-[#0a0a0a] overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-white/[0.06]">
           <div className="max-w-xl">
             <div className="flex items-center gap-2 mb-2">
-              <span className="w-2.5 h-2.5 bg-brand-lime inline-block" />
-              <span className="text-xs font-mono-hud text-brand-lime uppercase font-bold tracking-widest">
-                SERVICES // PRODUCTION EXPERTISE
+              <span className="w-1.5 h-1.5 rounded-full bg-red-600 inline-block" />
+              <span className="text-xs font-mono text-neutral-400 uppercase tracking-widest">
+                02 &bull; Capabilities
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold uppercase text-foreground tracking-tight leading-none">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-bold text-white tracking-tight">
               What I Offer
             </h2>
-            <p className="mt-3 text-sm text-text-muted font-sans leading-relaxed">
-              Full-lifecycle software engineering from high-throughput backend APIs and database schemas to reactive 3D interfaces and machine learning pipelines.
+            <p className="mt-3 text-sm text-[#a0a0a0] leading-relaxed">
+              Full-lifecycle web and systems development spanning architecture, cloud deployment, and machine learning solutions.
             </p>
           </div>
 
-          <div className="flex items-center gap-3 font-mono-hud text-xs text-text-muted">
-            <span className="flex items-center gap-1.5 text-brand-lime font-bold">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>HOVER TO PAUSE STREAM</span>
-            </span>
-            <span className="text-white/20">|</span>
-            <span>15 CORE SERVICES</span>
+          <div className="text-xs font-mono text-neutral-500">
+            Hover to pause stream
           </div>
         </div>
       </div>
 
-      {/* Infinite Marquee Stage with Edge Vignette Gradient Masks */}
-      <div className="relative w-full space-y-4">
-        {/* Left & Right Fade Gradient Vignettes */}
-        <div className="absolute top-0 bottom-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-[#090a0d] to-transparent z-10 pointer-events-none" />
-        <div className="absolute top-0 bottom-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-[#090a0d] to-transparent z-10 pointer-events-none" />
+      {/* Infinite Marquee Rows with Soft Gradient Vignettes */}
+      <div className="relative w-full space-y-3">
+        <div className="absolute top-0 bottom-0 left-0 w-20 sm:w-36 bg-gradient-to-r from-[#0a0a0a] to-transparent z-10 pointer-events-none" />
+        <div className="absolute top-0 bottom-0 right-0 w-20 sm:w-36 bg-gradient-to-l from-[#0a0a0a] to-transparent z-10 pointer-events-none" />
 
-        {/* Row 1: Left */}
         <MarqueeRow items={ROW_1} direction="left" speed={30} />
-
-        {/* Row 2: Right */}
         <MarqueeRow items={ROW_2} direction="right" speed={34} />
-
-        {/* Row 3: Left */}
         <MarqueeRow items={ROW_3} direction="left" speed={32} />
       </div>
     </section>

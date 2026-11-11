@@ -26,17 +26,17 @@ interface CommandPaletteProps {
 }
 
 const ICON_MAP: Record<string, React.ReactNode> = {
-  User: <User className="w-3.5 h-3.5 text-brand-lime" />,
-  Code: <Code className="w-3.5 h-3.5 text-brand-lime" />,
-  Cpu: <Cpu className="w-3.5 h-3.5 text-brand-lime" />,
-  Briefcase: <Briefcase className="w-3.5 h-3.5 text-brand-lime" />,
-  GraduationCap: <GraduationCap className="w-3.5 h-3.5 text-brand-lime" />,
-  Mail: <Mail className="w-3.5 h-3.5 text-brand-orange" />,
-  Copy: <Copy className="w-3.5 h-3.5 text-brand-lime" />,
-  FileText: <FileText className="w-3.5 h-3.5 text-brand-lime" />,
-  Github: <Github className="w-3.5 h-3.5 text-foreground" />,
-  Linkedin: <Linkedin className="w-3.5 h-3.5 text-brand-lime" />,
-  Sun: <Sun className="w-3.5 h-3.5 text-brand-lime" />,
+  User: <User className="w-3.5 h-3.5 text-[#e50914]" />,
+  Code: <Code className="w-3.5 h-3.5 text-[#e50914]" />,
+  Cpu: <Cpu className="w-3.5 h-3.5 text-[#e50914]" />,
+  Briefcase: <Briefcase className="w-3.5 h-3.5 text-[#e50914]" />,
+  GraduationCap: <GraduationCap className="w-3.5 h-3.5 text-[#e50914]" />,
+  Mail: <Mail className="w-3.5 h-3.5 text-[#e50914]" />,
+  Copy: <Copy className="w-3.5 h-3.5 text-[#e50914]" />,
+  FileText: <FileText className="w-3.5 h-3.5 text-[#e50914]" />,
+  Github: <Github className="w-3.5 h-3.5 text-white" />,
+  Linkedin: <Linkedin className="w-3.5 h-3.5 text-[#e50914]" />,
+  Sun: <Sun className="w-3.5 h-3.5 text-[#e50914]" />,
 };
 
 export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
@@ -114,23 +114,23 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
       aria-label="Command Palette"
     >
       <div
-        className="w-full max-w-xl bg-[#0e1117] rounded-sm border border-brand-lime shadow-2xl overflow-hidden animate-in zoom-in-95 duration-150"
+        className="w-full max-w-xl bg-[#121212] rounded-lg border border-white/10 shadow-2xl overflow-hidden animate-in zoom-in-95 duration-150"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Search Input Bar */}
-        <div className="flex items-center gap-3 px-4 py-3 border-b border-border bg-[#11141a]">
-          <Search className="w-4 h-4 text-brand-lime" />
+        <div className="flex items-center gap-3 px-4 py-3 border-b border-white/[0.08] bg-[#161616]">
+          <Search className="w-4 h-4 text-[#e50914]" />
           <input
             type="text"
-            placeholder="Type a command or filter routines (e.g. projects, resume, email)..."
+            placeholder="Type a command or section name..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-full bg-transparent text-foreground placeholder-text-muted/60 focus:outline-none text-xs font-mono-hud"
+            className="w-full bg-transparent text-white placeholder-neutral-500 focus:outline-none text-xs"
             autoFocus
           />
           <button
             onClick={onClose}
-            className="p-1 rounded-sm text-text-muted hover:text-brand-lime"
+            className="p-1 rounded text-neutral-400 hover:text-white"
             aria-label="Close command palette"
           >
             <X className="w-4 h-4" />
@@ -138,10 +138,10 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
         </div>
 
         {/* Results List */}
-        <div className="max-h-80 overflow-y-auto p-1 divide-y divide-border/20">
+        <div className="max-h-80 overflow-y-auto p-2 space-y-1">
           {filteredItems.length === 0 ? (
-            <div className="py-8 text-center text-xs font-mono-hud text-text-muted">
-              // NO MATCHING TELEMETRY ROUTINES
+            <div className="py-8 text-center text-xs text-[#a0a0a0]">
+              No matching commands found.
             </div>
           ) : (
             filteredItems.map((item, index) => {
@@ -151,25 +151,25 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
                   key={item.id}
                   onClick={() => handleSelect(item.action)}
                   onMouseEnter={() => setSelectedIndex(index)}
-                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-sm text-left text-xs font-mono-hud transition-colors ${
+                  className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-md text-left text-xs transition-colors ${
                     isSelected
-                      ? "bg-brand-lime text-black font-extrabold"
-                      : "text-foreground/90 hover:bg-[#161a22]"
+                      ? "bg-[#e50914] text-white font-medium"
+                      : "text-neutral-200 hover:bg-white/[0.04]"
                   }`}
                 >
                   <div className="flex items-center gap-3">
-                    <span className="p-1 rounded-sm bg-black/40 border border-border">
-                      {ICON_MAP[item.icon] || <Command className="w-3.5 h-3.5 text-text-muted" />}
+                    <span className="p-1 rounded bg-black/40 border border-white/[0.06]">
+                      {ICON_MAP[item.icon] || <Command className="w-3.5 h-3.5 text-neutral-400" />}
                     </span>
                     <div>
-                      <div className="font-semibold">{item.title}</div>
-                      <div className={`text-[10px] ${isSelected ? "text-black/80" : "text-text-muted"}`}>
-                        [{item.category}]
+                      <div className="font-medium">{item.title}</div>
+                      <div className={`text-[10px] ${isSelected ? "text-white/80" : "text-[#a0a0a0]"}`}>
+                        {item.category}
                       </div>
                     </div>
                   </div>
-                  <span className="text-[10px] uppercase font-bold">
-                    SELECT &crarr;
+                  <span className="text-[10px] uppercase tracking-wider font-semibold">
+                    Select &crarr;
                   </span>
                 </button>
               );
@@ -178,15 +178,15 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
         </div>
 
         {/* Footer shortcuts */}
-        <div className="px-4 py-2 border-t border-border bg-[#11141a] flex items-center justify-between text-[10px] text-text-muted font-mono-hud">
+        <div className="px-4 py-2.5 border-t border-white/[0.08] bg-[#161616] flex items-center justify-between text-[11px] text-[#a0a0a0]">
           <div className="flex items-center gap-3">
-            <span>&uarr;&darr; NAVIGATE</span>
-            <span>&crarr; EXECUTE</span>
-            <span>ESC DISMISS</span>
+            <span>&uarr;&darr; Navigate</span>
+            <span>&crarr; Select</span>
+            <span>ESC Dismiss</span>
           </div>
           {copied && (
-            <span className="text-brand-lime flex items-center gap-1 font-bold">
-              <Check className="w-3 h-3" /> EMAIL COPIED
+            <span className="text-red-400 flex items-center gap-1 font-semibold">
+              <Check className="w-3 h-3" /> Email Copied
             </span>
           )}
         </div>

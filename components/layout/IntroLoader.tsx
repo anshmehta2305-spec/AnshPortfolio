@@ -9,7 +9,7 @@ interface IntroLoaderProps {
 
 export default function IntroLoader({ onComplete }: IntroLoaderProps) {
   const [progress, setProgress] = useState(0);
-  const [statusText, setStatusText] = useState("CALIBRATING CAD SCHEMATICS...");
+  const [statusText, setStatusText] = useState("Loading portfolio...");
   const [isDone, setIsDone] = useState(false);
 
   useEffect(() => {
@@ -31,15 +31,15 @@ export default function IntroLoader({ onComplete }: IntroLoaderProps) {
           }, 150);
           return 100;
         }
-        const next = prev + Math.floor(Math.random() * 22) + 12;
-        if (next > 35 && next < 70) {
-          setStatusText("MOUNTING 3D WIREFRAME ENGINE...");
-        } else if (next >= 70) {
-          setStatusText("DEPLOYING HIGH-CRAFT TELEMETRY HUD...");
+        const next = prev + Math.floor(Math.random() * 24) + 14;
+        if (next > 40 && next < 75) {
+          setStatusText("Initializing workspace & projects...");
+        } else if (next >= 75) {
+          setStatusText("Rendering interface...");
         }
         return next > 100 ? 100 : next;
       });
-    }, 75);
+    }, 70);
 
     return () => clearInterval(interval);
   }, [onComplete]);
@@ -48,56 +48,59 @@ export default function IntroLoader({ onComplete }: IntroLoaderProps) {
     <AnimatePresence>
       {!isDone && (
         <motion.div
-          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#090a0d] text-foreground font-mono-hud select-none cad-grid"
+          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#0a0a0a] text-white select-none"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, transition: { duration: 0.35, ease: "easeInOut" } }}
         >
-          <div className="relative z-10 w-full max-w-sm px-6 text-left space-y-5 border border-border p-6 bg-[#11141a] shadow-cad">
-            {/* Top telemetry bar */}
-            <div className="flex items-center justify-between text-[10px] text-text-muted pb-3 border-b border-border">
-              <span className="text-brand-lime font-bold">ANSH_MEHTA // BOOT_SEQ</span>
-              <span>v3.0.0</span>
+          <div className="relative z-10 w-full max-w-sm px-6 text-left space-y-6 border border-white/[0.08] p-8 bg-[#121212] rounded-xl shadow-2xl">
+            {/* Top Bar */}
+            <div className="flex items-center justify-between text-xs text-[#a0a0a0] pb-3 border-b border-white/[0.06]">
+              <span className="flex items-center gap-2 text-white font-medium">
+                <span className="w-2 h-2 rounded-full bg-[#e50914]" />
+                Ansh Mehta
+              </span>
+              <span>2026 Portfolio</span>
             </div>
 
             {/* Monogram Box */}
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-black border border-brand-lime flex items-center justify-center text-brand-lime font-extrabold text-base">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-lg bg-black/60 border border-red-500/30 flex items-center justify-center text-[#e50914] font-extrabold text-lg">
                 AM
               </div>
               <div>
-                <div className="text-sm font-display font-extrabold uppercase text-foreground">
+                <div className="text-base font-bold text-white">
                   Ansh Mehta
                 </div>
-                <div className="text-[10px] text-text-muted">
-                  Full-Stack Engineer &bull; CSE &apos;26
+                <div className="text-xs text-[#a0a0a0]">
+                  Full-Stack Developer &bull; CSE &apos;26
                 </div>
               </div>
             </div>
 
-            {/* Progress Bar & Telemetry status */}
+            {/* Progress Bar & Status */}
             <div className="space-y-2">
-              <div className="flex items-center justify-between text-[10px]">
-                <span className="text-brand-lime uppercase font-semibold">{statusText}</span>
-                <span className="text-foreground font-bold">{progress}%</span>
+              <div className="flex items-center justify-between text-xs">
+                <span className="text-[#a0a0a0]">{statusText}</span>
+                <span className="text-white font-semibold">{progress}%</span>
               </div>
-              <div className="w-full h-1 bg-black overflow-hidden border border-border">
+              <div className="w-full h-1 bg-black/60 rounded-full overflow-hidden border border-white/[0.06]">
                 <motion.div
-                  className="h-full bg-brand-lime"
+                  className="h-full bg-[#e50914]"
                   style={{ width: `${progress}%` }}
                 />
               </div>
             </div>
 
             {/* Skip */}
-            <div className="text-right pt-2 border-t border-border/60">
+            <div className="text-right pt-2 border-t border-white/[0.06]">
               <button
                 onClick={() => {
                   setIsDone(true);
                   setTimeout(onComplete, 100);
                 }}
-                className="text-[10px] text-text-muted hover:text-brand-lime transition-colors uppercase font-bold"
+                className="text-xs text-[#a0a0a0] hover:text-white transition-colors"
               >
-                [ESC_BOOT &rarr;]
+                Skip intro &rarr;
               </button>
             </div>
           </div>

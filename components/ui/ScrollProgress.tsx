@@ -26,7 +26,7 @@ export default function ScrollProgress() {
       aria-hidden="true"
     >
       <div
-        className="h-full bg-brand-lime transition-all duration-75 ease-out shadow-[0_0_10px_rgba(212,255,0,0.8)]"
+        className="h-full bg-[#e50914] transition-all duration-75 ease-out shadow-[0_0_8px_rgba(229,9,20,0.6)]"
         style={{ width: `${progress}%` }}
       />
     </div>

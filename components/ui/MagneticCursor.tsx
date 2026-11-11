@@ -65,23 +65,23 @@ export default function MagneticCursor() {
 
   return (
     <>
-      {/* Outer follow box (Machined CAD square) */}
+      {/* Outer follow box */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-50 border border-brand-lime mix-blend-difference"
+        className="fixed top-0 left-0 pointer-events-none z-50 border border-red-500/50 rounded-full"
         style={{
           x: smoothX,
           y: smoothY,
           translateX: "-50%",
           translateY: "-50%",
-          width: isHovered ? 44 : 24,
-          height: isHovered ? 44 : 24,
-          backgroundColor: isHovered ? "rgba(212, 255, 0, 0.2)" : "transparent",
+          width: isHovered ? 40 : 22,
+          height: isHovered ? 40 : 22,
+          backgroundColor: isHovered ? "rgba(229, 9, 20, 0.15)" : "transparent",
         }}
         transition={{ type: "spring", damping: 20, stiffness: 300 }}
       />
       {/* Center point */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-50 w-1.5 h-1.5 bg-brand-lime shadow-[0_0_6px_#d4ff00]"
+        className="fixed top-0 left-0 pointer-events-none z-50 w-1.5 h-1.5 bg-[#e50914] rounded-full shadow-[0_0_6px_rgba(229,9,20,0.8)]"
         style={{
           x: cursorX,
           y: cursorY,
