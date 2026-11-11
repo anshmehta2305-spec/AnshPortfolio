@@ -462,6 +462,7 @@ export const CERTIFICATIONS: CertificateItem[] = [
 
 export const NAV_LINKS = [
   { label: "About", href: "#about" },
+  { label: "Services", href: "#services" },
   { label: "Projects", href: "#projects" },
   { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experience" },
@@ -471,6 +472,7 @@ export const NAV_LINKS = [
 
 export const COMMAND_PALETTE_ITEMS = [
   { id: "about", title: "Go to About", category: "Navigation", icon: "User", action: "#about" },
+  { id: "services", title: "View What I Offer (Services)", category: "Navigation", icon: "Cpu", action: "#services" },
   { id: "projects", title: "View Featured Projects", category: "Navigation", icon: "Code", action: "#projects" },
   { id: "skills", title: "Inspect Tech Stack & Skills", category: "Navigation", icon: "Cpu", action: "#skills" },
   { id: "experience", title: "View Job Simulations Experience", category: "Navigation", icon: "Briefcase", action: "#experience" },
