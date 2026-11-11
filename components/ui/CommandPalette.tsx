@@ -26,17 +26,17 @@ interface CommandPaletteProps {
 }
 
 const ICON_MAP: Record<string, React.ReactNode> = {
-  User: <User className="w-3.5 h-3.5 text-[#e50914]" />,
-  Code: <Code className="w-3.5 h-3.5 text-[#e50914]" />,
-  Cpu: <Cpu className="w-3.5 h-3.5 text-[#e50914]" />,
-  Briefcase: <Briefcase className="w-3.5 h-3.5 text-[#e50914]" />,
-  GraduationCap: <GraduationCap className="w-3.5 h-3.5 text-[#e50914]" />,
-  Mail: <Mail className="w-3.5 h-3.5 text-[#e50914]" />,
-  Copy: <Copy className="w-3.5 h-3.5 text-[#e50914]" />,
-  FileText: <FileText className="w-3.5 h-3.5 text-[#e50914]" />,
-  Github: <Github className="w-3.5 h-3.5 text-white" />,
-  Linkedin: <Linkedin className="w-3.5 h-3.5 text-[#e50914]" />,
-  Sun: <Sun className="w-3.5 h-3.5 text-[#e50914]" />,
+  User: <User className="w-3.5 h-3.5 text-crimson" />,
+  Code: <Code className="w-3.5 h-3.5 text-crimson" />,
+  Cpu: <Cpu className="w-3.5 h-3.5 text-crimson" />,
+  Briefcase: <Briefcase className="w-3.5 h-3.5 text-crimson" />,
+  GraduationCap: <GraduationCap className="w-3.5 h-3.5 text-crimson" />,
+  Mail: <Mail className="w-3.5 h-3.5 text-crimson" />,
+  Copy: <Copy className="w-3.5 h-3.5 text-crimson" />,
+  FileText: <FileText className="w-3.5 h-3.5 text-crimson" />,
+  Github: <Github className="w-3.5 h-3.5 text-txt-primary" />,
+  Linkedin: <Linkedin className="w-3.5 h-3.5 text-crimson" />,
+  Sun: <Sun className="w-3.5 h-3.5 text-crimson" />,
 };
 
 export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
@@ -69,8 +69,13 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
         const nextTheme = currentTheme === "dark" ? "light" : "dark";
         localStorage.setItem("ansh-theme", nextTheme);
         document.documentElement.setAttribute("data-theme", nextTheme);
-        if (nextTheme === "dark") document.documentElement.classList.add("dark");
-        else document.documentElement.classList.remove("dark");
+        if (nextTheme === "dark") {
+          document.documentElement.classList.add("dark");
+          document.documentElement.classList.remove("light");
+        } else {
+          document.documentElement.classList.add("light");
+          document.documentElement.classList.remove("dark");
+        }
       } else if (action.startsWith("http")) {
         window.open(action, "_blank", "noopener,noreferrer");
       }
@@ -107,30 +112,30 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-start justify-center pt-24 px-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-150"
+      className="fixed inset-0 z-50 flex items-start justify-center pt-24 px-4 bg-black/50 dark:bg-black/80 backdrop-blur-md animate-in fade-in duration-150"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-label="Command Palette"
     >
       <div
-        className="w-full max-w-xl bg-[#121212] rounded-lg border border-white/10 shadow-2xl overflow-hidden animate-in zoom-in-95 duration-150"
+        className="w-full max-w-xl bg-bg-card rounded-xl border border-line-primary shadow-2xl overflow-hidden animate-in zoom-in-95 duration-150"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Search Input Bar */}
-        <div className="flex items-center gap-3 px-4 py-3 border-b border-white/[0.08] bg-[#161616]">
-          <Search className="w-4 h-4 text-[#e50914]" />
+        <div className="flex items-center gap-3 px-4 py-3.5 border-b border-line-primary bg-bg-secondary">
+          <Search className="w-4 h-4 text-crimson flex-shrink-0" />
           <input
             type="text"
-            placeholder="Type a command or section name..."
+            placeholder="Type a command or jump to section..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-full bg-transparent text-white placeholder-neutral-500 focus:outline-none text-xs"
+            className="w-full bg-transparent text-txt-primary placeholder-txt-muted/70 focus:outline-none text-xs"
             autoFocus
           />
           <button
             onClick={onClose}
-            className="p-1 rounded text-neutral-400 hover:text-white"
+            className="p-1 rounded text-txt-muted hover:text-txt-primary"
             aria-label="Close command palette"
           >
             <X className="w-4 h-4" />
@@ -140,7 +145,7 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
         {/* Results List */}
         <div className="max-h-80 overflow-y-auto p-2 space-y-1">
           {filteredItems.length === 0 ? (
-            <div className="py-8 text-center text-xs text-[#a0a0a0]">
+            <div className="py-8 text-center text-xs text-txt-muted">
               No matching commands found.
             </div>
           ) : (
@@ -151,19 +156,19 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
                   key={item.id}
                   onClick={() => handleSelect(item.action)}
                   onMouseEnter={() => setSelectedIndex(index)}
-                  className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-md text-left text-xs transition-colors ${
+                  className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-lg text-left text-xs transition-colors ${
                     isSelected
-                      ? "bg-[#e50914] text-white font-medium"
-                      : "text-neutral-200 hover:bg-white/[0.04]"
+                      ? "bg-crimson text-white font-semibold"
+                      : "text-txt-primary hover:bg-bg-secondary"
                   }`}
                 >
                   <div className="flex items-center gap-3">
-                    <span className="p-1 rounded bg-black/40 border border-white/[0.06]">
-                      {ICON_MAP[item.icon] || <Command className="w-3.5 h-3.5 text-neutral-400" />}
+                    <span className="p-1 rounded bg-bg-secondary border border-line-primary">
+                      {ICON_MAP[item.icon] || <Command className="w-3.5 h-3.5 text-txt-muted" />}
                     </span>
                     <div>
                       <div className="font-medium">{item.title}</div>
-                      <div className={`text-[10px] ${isSelected ? "text-white/80" : "text-[#a0a0a0]"}`}>
+                      <div className={`text-[10px] ${isSelected ? "text-white/80" : "text-txt-muted"}`}>
                         {item.category}
                       </div>
                     </div>
@@ -178,14 +183,14 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
         </div>
 
         {/* Footer shortcuts */}
-        <div className="px-4 py-2.5 border-t border-white/[0.08] bg-[#161616] flex items-center justify-between text-[11px] text-[#a0a0a0]">
+        <div className="px-4 py-2.5 border-t border-line-primary bg-bg-secondary flex items-center justify-between text-[11px] text-txt-muted">
           <div className="flex items-center gap-3">
             <span>&uarr;&darr; Navigate</span>
             <span>&crarr; Select</span>
             <span>ESC Dismiss</span>
           </div>
           {copied && (
-            <span className="text-red-400 flex items-center gap-1 font-semibold">
+            <span className="text-crimson flex items-center gap-1 font-semibold">
               <Check className="w-3 h-3" /> Email Copied
             </span>
           )}

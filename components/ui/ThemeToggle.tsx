@@ -7,7 +7,6 @@ export default function ThemeToggle() {
   const [theme, setTheme] = useState<"dark" | "light">("dark");
   const [mounted, setMounted] = useState(false);
 
-  // Apply theme to DOM documentElement
   const applyTheme = (t: "dark" | "light") => {
     document.documentElement.setAttribute("data-theme", t);
     if (t === "dark") {
@@ -21,7 +20,7 @@ export default function ThemeToggle() {
 
   useEffect(() => {
     setMounted(true);
-    // Dark-first priority: check localStorage, otherwise default to "dark"
+    // Dark-first default, read user's saved preference
     const stored = localStorage.getItem("ansh-theme") as "dark" | "light" | null;
     const initialTheme = stored === "light" ? "light" : "dark";
     setTheme(initialTheme);
@@ -37,15 +36,15 @@ export default function ThemeToggle() {
     setTheme(nextTheme);
     try {
       localStorage.setItem("ansh-theme", nextTheme);
-    } catch (err) {
-      // LocalStorage access handling if disabled
+    } catch {
+      // LocalStorage access handling if blocked
     }
     applyTheme(nextTheme);
   };
 
   if (!mounted) {
     return (
-      <div className="w-8 h-8 rounded-full border border-white/10 bg-neutral-900/50" />
+      <div className="w-8 h-8 rounded-full border border-line-primary bg-bg-secondary" />
     );
   }
 
@@ -55,13 +54,13 @@ export default function ThemeToggle() {
       onClick={toggleTheme}
       aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
       title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-      className="relative p-2 rounded-full border border-white/10 dark:border-white/10 light:border-black/10 bg-neutral-900/80 hover:bg-neutral-800 text-neutral-300 hover:text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-600/50 cursor-pointer flex items-center justify-center flex-shrink-0"
+      className="relative p-2 rounded-full border border-line-primary bg-bg-card hover:bg-bg-card-hover text-txt-secondary hover:text-txt-primary transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-crimson/40 cursor-pointer flex items-center justify-center flex-shrink-0 shadow-sm"
     >
       <div className="relative w-4 h-4 flex items-center justify-center pointer-events-none">
         {theme === "dark" ? (
-          <Sun className="w-4 h-4 text-neutral-300 hover:text-white transition-colors" />
+          <Sun className="w-4 h-4 text-txt-primary transition-transform duration-200 hover:rotate-45" />
         ) : (
-          <Moon className="w-4 h-4 text-[#e50914] transition-colors" />
+          <Moon className="w-4 h-4 text-crimson transition-transform duration-200 hover:-rotate-12" />
         )}
       </div>
     </button>

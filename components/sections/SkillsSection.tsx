@@ -7,22 +7,23 @@ export default function SkillsSection() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <section id="skills" className="py-28 relative border-t border-white/[0.06] bg-[#0a0a0a]">
+    <section id="skills" className="py-28 relative border-t border-line-primary bg-bg-primary transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 pb-6 border-b border-white/[0.06] gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 pb-6 border-b border-line-primary gap-4">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-600 inline-block" />
-              <span className="text-xs font-mono text-neutral-400 uppercase tracking-widest">
-                04 &bull; Technical Stack
+              <span className="w-1.5 h-1.5 rounded-full bg-crimson inline-block" />
+              <span className="text-xs font-mono text-txt-muted uppercase tracking-widest">
+                04 &bull; Stack
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-bold text-white tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-bold text-txt-primary tracking-tight">
               Skills &amp; Technologies
             </h2>
           </div>
-          <div className="text-xs font-mono text-[#a0a0a0]">
+          <div className="text-xs font-mono text-txt-muted">
             Core Disciplines
           </div>
         </div>
@@ -37,8 +38,8 @@ export default function SkillsSection() {
                 onClick={() => setActiveTab(idx)}
                 className={`px-4 py-2 rounded-md text-xs font-medium whitespace-nowrap transition-all border ${
                   isActive
-                    ? "bg-red-600 text-white border-red-600"
-                    : "bg-[#121212] text-neutral-400 border-white/[0.06] hover:text-white hover:bg-neutral-800"
+                    ? "bg-crimson text-white border-crimson shadow-sm"
+                    : "bg-bg-secondary text-txt-secondary border-line-primary hover:text-txt-primary hover:bg-bg-card hover:border-line-hover"
                 }`}
               >
                 {cat.category}
@@ -48,17 +49,17 @@ export default function SkillsSection() {
         </div>
 
         {/* Active Category Skills Grid */}
-        <div className="p-8 rounded-lg bg-[#121212] border border-white/[0.06] space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-white/[0.06] gap-2">
+        <div className="p-8 rounded-lg bg-bg-card border border-line-primary shadow-theme space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-line-primary gap-2">
             <div>
-              <h3 className="text-xl font-sans font-bold text-white">
+              <h3 className="text-xl font-sans font-bold text-txt-primary">
                 {SKILL_CATEGORIES[activeTab].category}
               </h3>
-              <p className="text-xs text-[#a0a0a0] mt-1 font-normal">
+              <p className="text-xs text-txt-secondary mt-1 font-normal">
                 {SKILL_CATEGORIES[activeTab].description}
               </p>
             </div>
-            <span className="text-xs font-mono text-neutral-400">
+            <span className="text-xs font-mono text-txt-muted">
               {SKILL_CATEGORIES[activeTab].skills.length} Capabilities
             </span>
           </div>
@@ -67,28 +68,29 @@ export default function SkillsSection() {
             {SKILL_CATEGORIES[activeTab].skills.map((skill) => (
               <div
                 key={skill.name}
-                className="p-4 rounded-md bg-[#161616] border border-white/[0.04] hover:border-red-600/40 transition-colors flex flex-col justify-between"
+                className="p-4 rounded-md bg-bg-secondary border border-line-primary hover:border-crimson/50 transition-colors flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-xs font-medium text-white">
+                    <span className="text-xs font-semibold text-txt-primary">
                       {skill.name}
                     </span>
                     {skill.badge && (
-                      <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-red-600/10 text-red-400 border border-red-600/20">
+                      <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-crimson/10 text-crimson border border-crimson/20">
                         {skill.badge}
                       </span>
                     )}
                   </div>
                 </div>
 
-                <div className="mt-2 text-[11px] font-mono text-[#a0a0a0]">
+                <div className="mt-2 text-[11px] font-mono text-txt-secondary">
                   {skill.level || "Proficient"}
                 </div>
               </div>
             ))}
           </div>
         </div>
+
       </div>
     </section>
   );

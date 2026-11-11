@@ -69,10 +69,10 @@ export default function TerminalEasterEgg() {
             setIsOpen(true);
             setIsMinimized(false);
           }}
-          className="fixed bottom-6 right-6 z-40 flex items-center gap-2 px-3.5 py-2.5 rounded-full bg-[#121212] border border-white/10 text-xs font-medium text-neutral-300 hover:text-white hover:border-[#e50914] transition-all shadow-xl focus:outline-none"
+          className="fixed bottom-6 right-6 z-40 flex items-center gap-2 px-3.5 py-2.5 rounded-full bg-bg-card border border-line-primary text-xs font-semibold text-txt-primary hover:border-crimson transition-all shadow-theme hover:shadow-theme-hover focus:outline-none"
           title="Open interactive terminal"
         >
-          <Terminal className="w-3.5 h-3.5 text-[#e50914]" />
+          <Terminal className="w-3.5 h-3.5 text-crimson" />
           <span>Terminal</span>
         </button>
       )}

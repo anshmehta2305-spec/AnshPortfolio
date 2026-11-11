@@ -15,11 +15,11 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-[92vh] flex items-center justify-center pt-28 pb-16 overflow-hidden bg-[#0a0a0a]"
+      className="relative min-h-[92vh] flex items-center justify-center pt-28 pb-16 overflow-hidden bg-bg-primary transition-colors duration-300"
     >
       {/* Subtle crimson studio atmospheric glow matching the portrait */}
       <div
-        className="absolute top-1/4 right-10 lg:right-1/4 w-[480px] h-[480px] rounded-full pointer-events-none opacity-20 blur-[140px]"
+        className="absolute top-1/4 right-10 lg:right-1/4 w-[480px] h-[480px] rounded-full pointer-events-none opacity-20 dark:opacity-25 blur-[140px]"
         style={{ background: "radial-gradient(circle, #e50914 0%, transparent 70%)" }}
         aria-hidden="true"
       />
@@ -30,28 +30,28 @@ export default function HeroSection() {
           {/* Left Column: Text & Strategic Negative Space (7 cols) */}
           <div className="lg:col-span-7 space-y-8 text-left">
             {/* Status Pill */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs text-neutral-300">
-              <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-bg-card border border-line-primary text-xs text-txt-secondary shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-crimson animate-pulse" />
               <span className="font-medium tracking-wide">Available for Full-Stack &amp; Software Roles</span>
-              <span className="text-neutral-600">|</span>
-              <span className="text-neutral-400 flex items-center gap-1 text-[11px]">
-                <MapPin className="w-3 h-3 text-red-500" />
+              <span className="text-txt-muted">|</span>
+              <span className="text-txt-secondary flex items-center gap-1 text-[11px]">
+                <MapPin className="w-3 h-3 text-crimson" />
                 India
               </span>
             </div>
 
             {/* Main Headline */}
             <div className="space-y-3">
-              <h1 className="text-4xl sm:text-6xl md:text-7xl font-sans font-extrabold tracking-tight text-white leading-[1.05]">
+              <h1 className="text-4xl sm:text-6xl md:text-7xl font-sans font-extrabold tracking-tight text-txt-primary leading-[1.05]">
                 Ansh Mehta
               </h1>
-              <p className="text-xl sm:text-2xl font-light text-neutral-400 tracking-tight">
+              <p className="text-xl sm:text-2xl font-light text-txt-secondary tracking-tight">
                 Full-Stack Developer &amp; Software Engineer
               </p>
             </div>
 
             {/* Bio Paragraph */}
-            <p className="text-base sm:text-lg text-[#a0a0a0] leading-relaxed max-w-xl font-normal">
+            <p className="text-base sm:text-lg text-txt-secondary leading-relaxed max-w-xl font-normal">
               Final-year B.Tech CSE student specializing in high-performance web systems using the MERN stack, Next.js 14, and Python/FastAPI. Passionate about clean architecture, sub-100ms APIs, and applied AI.
             </p>
 
@@ -60,7 +60,7 @@ export default function HeroSection() {
               <a
                 href="#projects"
                 onClick={scrollToProjects}
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-md text-sm font-medium bg-[#e50914] text-white hover:bg-red-600 transition-all duration-200 shadow-lg shadow-red-950/30"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-md text-sm font-semibold bg-crimson hover:bg-crimson-hover text-white transition-all duration-200 shadow-md shadow-crimson/25"
               >
                 <span>View Projects</span>
                 <ArrowRight className="w-4 h-4" />
@@ -70,38 +70,38 @@ export default function HeroSection() {
                 href={PERSONAL_INFO.cvDownloadPath}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-md text-sm font-medium bg-transparent border border-white/20 text-white hover:border-white/40 hover:bg-white/[0.04] transition-all duration-200"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-md text-sm font-medium bg-bg-card border border-line-primary text-txt-primary hover:border-line-hover hover:bg-bg-card-hover transition-all duration-200 shadow-sm"
               >
-                <FileDown className="w-4 h-4 text-neutral-400" />
+                <FileDown className="w-4 h-4 text-txt-muted" />
                 <span>Curriculum Vitae</span>
               </a>
             </div>
 
             {/* Direct Minimalist Handles */}
-            <div className="pt-4 flex items-center gap-6 text-xs text-[#a0a0a0]">
+            <div className="pt-4 flex items-center gap-6 text-xs text-txt-secondary">
               <a
                 href={PERSONAL_INFO.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 hover:text-white transition-colors"
+                className="flex items-center gap-1.5 hover:text-txt-primary transition-colors"
               >
                 <Github className="w-3.5 h-3.5" />
                 <span>GitHub</span>
               </a>
-              <span className="text-neutral-700">&bull;</span>
+              <span className="text-txt-muted">&bull;</span>
               <a
                 href={PERSONAL_INFO.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 hover:text-white transition-colors"
+                className="flex items-center gap-1.5 hover:text-txt-primary transition-colors"
               >
                 <Linkedin className="w-3.5 h-3.5" />
                 <span>LinkedIn</span>
               </a>
-              <span className="text-neutral-700">&bull;</span>
+              <span className="text-txt-muted">&bull;</span>
               <a
                 href={`mailto:${PERSONAL_INFO.email}`}
-                className="flex items-center gap-1.5 hover:text-white transition-colors"
+                className="flex items-center gap-1.5 hover:text-txt-primary transition-colors"
               >
                 <Mail className="w-3.5 h-3.5" />
                 <span>Email</span>
@@ -109,9 +109,9 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Right Column: Hero Portrait Image with Seamless Gradient Fades (5 cols) */}
+          {/* Right Column: Hero Portrait Image with Adaptive Gradient Fades (5 cols) */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end relative">
-            <div className="relative w-full max-w-[420px] aspect-[4/5] overflow-hidden">
+            <div className="relative w-full max-w-[420px] aspect-[4/5] overflow-hidden rounded-lg shadow-theme">
               
               {/* The Hero Image */}
               <Image
@@ -123,16 +123,9 @@ export default function HeroSection() {
                 sizes="(max-width: 768px) 100vw, 420px"
               />
 
-              {/* Edge Gradient Fades: Bottom, Left, and Right so it blends directly into #0a0a0a */}
+              {/* Edge Gradient Fades: Adapts to --hero-fade-stop (#0a0a0a in dark, #ffffff in light) */}
               <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  background: `
-                    linear-gradient(to top, #0a0a0a 0%, transparent 28%),
-                    linear-gradient(to right, #0a0a0a 0%, transparent 12%),
-                    linear-gradient(to left, #0a0a0a 0%, transparent 12%)
-                  `,
-                }}
+                className="absolute inset-0 pointer-events-none hero-portrait-fade"
               />
             </div>
           </div>

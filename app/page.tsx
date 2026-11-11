@@ -64,7 +64,7 @@ export default function Home() {
       />
 
       {/* Main Page Flow */}
-      <div className="relative min-h-screen flex flex-col selection:bg-red-950/60 selection:text-white">
+      <div className="relative min-h-screen flex flex-col bg-bg-primary text-txt-primary transition-colors duration-300">
         <Navbar onOpenCommandPalette={() => setCommandPaletteOpen(true)} />
 
         <main className="flex-1">
