@@ -190,7 +190,7 @@ export const PROJECTS: Project[] = [
       "Render",
       "Vercel",
     ],
-    liveUrl: "https://ai-legal-clustering-demo.vercel.app", // Placeholder
+    liveUrl: "https://ai-legal-web-mauve.vercel.app/",
     githubUrl: "https://github.com/anshmehta2305-spec/ai-legal-clustering", // Placeholder
     description:
       "An intelligent legal tech web platform that analyzes unstructured case descriptions and predicts applicable Indian Penal Code (IPC) sections using ensemble machine learning and structural NLP.",
@@ -501,7 +501,7 @@ Obsessed with sub-100ms response times, enterprise security, and clean engineeri
   projects: `FEATURED ARCHITECTURES:
   1. Portfolio Pro [Next.js 14, Prisma, PostgreSQL, NextAuth] - 37 pages, 17 APIs, 13 calculators (Live: https://portfoliopro-rho-rouge.vercel.app/)
   2. Avenor [React 18, Three.js, GSAP, Tailwind] - 72ms DOM-interactive, WCAG AAA, 24 CDP tests
-  3. AI Legal Text Clustering [Python, FastAPI, Scikit-Learn] - TF-IDF NLP + TOTP 2FA backend
+  3. AI Legal Text Clustering [Python, FastAPI, Scikit-Learn] - TF-IDF NLP + TOTP 2FA backend (Live: https://ai-legal-web-mauve.vercel.app/)
   4. Online Auction System [PHP, MySQL, JavaScript] - ACID compliant real-time bidding`,
   skills: `STACK BREAKDOWN:
   [Frontend] React 18, Next.js 14, TypeScript, Tailwind CSS, Three.js WebGL, GSAP
