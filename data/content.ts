@@ -100,7 +100,7 @@ export const PROJECTS: Project[] = [
       "Tailwind CSS",
       "Vercel",
     ],
-    liveUrl: "https://portfolio-pro-demo.vercel.app", // Placeholder
+    liveUrl: "https://portfoliopro-rho-rouge.vercel.app/",
     githubUrl: "https://github.com/anshmehta2305-spec/portfolio-pro", // Placeholder
     description:
       "A white-label wealth management & mutual fund distribution platform connecting distributors and investors with granular portfolio tracking, automated reporting, and role-segregated control panels.",
@@ -499,7 +499,7 @@ export const TERMINAL_COMMANDS: Record<string, string> = {
 Full-Stack Developer specializing in MERN Stack, Next.js 14, and Python/FastAPI.
 Obsessed with sub-100ms response times, enterprise security, and clean engineering.`,
   projects: `FEATURED ARCHITECTURES:
-  1. Portfolio Pro [Next.js 14, Prisma, PostgreSQL, NextAuth] - 37 pages, 17 APIs, 13 calculators
+  1. Portfolio Pro [Next.js 14, Prisma, PostgreSQL, NextAuth] - 37 pages, 17 APIs, 13 calculators (Live: https://portfoliopro-rho-rouge.vercel.app/)
   2. Avenor [React 18, Three.js, GSAP, Tailwind] - 72ms DOM-interactive, WCAG AAA, 24 CDP tests
   3. AI Legal Text Clustering [Python, FastAPI, Scikit-Learn] - TF-IDF NLP + TOTP 2FA backend
   4. Online Auction System [PHP, MySQL, JavaScript] - ACID compliant real-time bidding`,
